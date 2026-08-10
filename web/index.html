@@ -1,0 +1,631 @@
+<title>陳鼎翰 Ding-Han Chen — AI 系統工程師</title>
+<style>
+:root{
+  --ground:#F4F5F3;
+  --panel:#FFFFFF;
+  --ink:#171C22;
+  --ink-2:#3D4650;
+  --muted:#6B7580;
+  --rule:#DCDFDA;
+  --rule-2:#E9EBE7;
+  --accent:#0F6E5C;
+  --accent-soft:#E4EEEA;
+  --signal:#A8481B;
+  --signal-soft:#F4E6DE;
+  --shadow:0 1px 2px rgba(23,28,34,.05), 0 8px 24px -16px rgba(23,28,34,.18);
+
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Songti TC","Noto Serif TC",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+  --mono:ui-monospace,"SF Mono","Cascadia Mono","Consolas","Roboto Mono",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --ground:#101317; --panel:#161A1F; --ink:#E7EAE6; --ink-2:#B4BCC2; --muted:#7C868F;
+    --rule:#272C33; --rule-2:#1E2329; --accent:#4FB39C; --accent-soft:#152621;
+    --signal:#D2794A; --signal-soft:#2A1D16;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#101317; --panel:#161A1F; --ink:#E7EAE6; --ink-2:#B4BCC2; --muted:#7C868F;
+  --rule:#272C33; --rule-2:#1E2329; --accent:#4FB39C; --accent-soft:#152621;
+  --signal:#D2794A; --signal-soft:#2A1D16;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -16px rgba(0,0,0,.6);
+}
+:root[data-theme="light"]{
+  --ground:#F4F5F3; --panel:#FFFFFF; --ink:#171C22; --ink-2:#3D4650; --muted:#6B7580;
+  --rule:#DCDFDA; --rule-2:#E9EBE7; --accent:#0F6E5C; --accent-soft:#E4EEEA;
+  --signal:#A8481B; --signal-soft:#F4E6DE;
+  --shadow:0 1px 2px rgba(23,28,34,.05), 0 8px 24px -16px rgba(23,28,34,.18);
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0; background:var(--ground); color:var(--ink);
+  font-family:var(--sans); font-size:16px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:940px; margin:0 auto; padding:0 28px;}
+section{padding:56px 0; border-top:1px solid var(--rule-2);}
+
+.eyebrow{
+  font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 18px;
+}
+h1,h2,h3,h4{text-wrap:balance; margin:0;}
+a{color:var(--accent);}
+
+/* ── résumé header ── */
+.masthead{padding:60px 0 40px;}
+.namerow{
+  display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:6px;
+}
+.masthead h1{
+  font-family:var(--serif); font-weight:600; letter-spacing:-.015em;
+  font-size:clamp(34px,5.5vw,50px); line-height:1.1;
+}
+.masthead .en{
+  font-family:var(--mono); font-size:14px; color:var(--muted); letter-spacing:.04em;
+}
+.role{
+  font-family:var(--mono); font-size:13.5px; letter-spacing:.05em; color:var(--accent);
+  margin:0 0 24px; font-weight:500;
+}
+.contactbar{
+  display:flex; flex-wrap:wrap; gap:8px 10px; align-items:center;
+  font-family:var(--mono); font-size:12.5px; margin-bottom:32px;
+}
+.contactbar span, .contactbar a{
+  border:1px solid var(--rule); border-radius:2px; padding:4px 10px;
+  background:var(--panel); color:var(--ink-2); text-decoration:none;
+}
+.contactbar a:hover{border-color:var(--accent); color:var(--accent);}
+.contactbar a:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+.thesis{
+  font-family:var(--serif); font-size:clamp(19px,2.7vw,25px); line-height:1.5;
+  color:var(--ink); max-width:34ch; margin:0 0 20px; font-weight:600;
+}
+.thesis em{font-style:normal; color:var(--accent);}
+.intro{color:var(--ink-2); max-width:64ch; margin:0 0 30px; font-size:16px;}
+.intro strong{color:var(--ink);}
+
+/* ── readout strip ── */
+.readout{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border:1px solid var(--rule); border-radius:3px; background:var(--panel);
+  overflow:hidden; box-shadow:var(--shadow);
+}
+.cell{padding:15px 18px; border-left:1px solid var(--rule-2);}
+.cell:first-child{border-left:none;}
+.cell .k{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); display:block; margin-bottom:5px;
+}
+.cell .v{
+  font-family:var(--mono); font-variant-numeric:tabular-nums;
+  font-size:20px; font-weight:600; color:var(--ink); letter-spacing:-.01em;
+}
+.cell .v small{font-size:11.5px; font-weight:400; color:var(--muted); margin-left:3px;}
+
+h2{
+  font-family:var(--serif); font-size:clamp(22px,3vw,28px); font-weight:600;
+  letter-spacing:-.01em; margin:0 0 10px;
+}
+.sub{color:var(--muted); font-size:15px; margin:0 0 30px; max-width:64ch;}
+
+/* ── skills ── */
+.skills{display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:14px;}
+.skill{
+  background:var(--panel); border:1px solid var(--rule); border-radius:3px; padding:15px 17px;
+}
+.skill.lead{border-color:var(--accent);}
+.skill h4{
+  font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--muted); margin:0 0 9px; font-weight:500;
+}
+.skill.lead h4{color:var(--accent);}
+.skill p{margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.75;}
+.skill b{color:var(--ink); font-weight:600;}
+
+/* ── experience ── */
+.exp{border-top:1px solid var(--rule-2);}
+.job{
+  display:grid; grid-template-columns:170px minmax(0,1fr); gap:8px 28px;
+  padding:22px 0; border-bottom:1px solid var(--rule-2);
+}
+.job .when{
+  font-family:var(--mono); font-size:12.5px; color:var(--muted);
+  font-variant-numeric:tabular-nums; line-height:1.9;
+}
+.job .when b{display:block; color:var(--ink); font-size:13px; font-weight:600;}
+.job h3{font-size:18px; font-weight:600; margin:0 0 3px; letter-spacing:-.005em;}
+.job .title{
+  font-family:var(--mono); font-size:12.5px; color:var(--accent); margin:0 0 10px;
+}
+.job ul{margin:0; padding-left:18px; color:var(--ink-2); font-size:14.5px;}
+.job li{margin-bottom:5px;}
+.job li b{color:var(--ink);}
+
+/* ── project rows ── */
+.rows{display:flex; flex-direction:column; border-top:1px solid var(--rule-2);}
+.row{
+  display:grid; grid-template-columns:minmax(0,1fr) auto; gap:12px 28px;
+  padding:22px 0; border-bottom:1px solid var(--rule-2); align-items:start;
+}
+.row .name{
+  font-family:var(--serif); font-size:19.5px; font-weight:600; letter-spacing:-.005em;
+  margin:0 0 6px; display:flex; align-items:baseline; gap:11px; flex-wrap:wrap;
+}
+.row .name .tag{
+  font-family:var(--mono); font-size:10.5px; font-weight:500; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+  padding:2.5px 7px; border-radius:2px; white-space:nowrap;
+}
+.row p{margin:0 0 10px; color:var(--ink-2); font-size:15px; max-width:60ch;}
+.chips{display:flex; flex-wrap:wrap; gap:6px;}
+.chip{
+  font-family:var(--mono); font-size:11px; color:var(--muted);
+  border:1px solid var(--rule); border-radius:2px; padding:2px 7px;
+  font-variant-numeric:tabular-nums; white-space:nowrap;
+}
+.chip.hot{color:var(--accent); border-color:var(--accent);}
+.metric{
+  font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right;
+  font-size:12px; color:var(--muted); line-height:1.85; white-space:nowrap;
+}
+.metric b{display:block; font-size:17px; color:var(--ink); font-weight:600;}
+
+/* ── 迷你敘事：現象→根因→解法 ── */
+.story{
+  margin:14px 0 0; padding:14px 16px; background:var(--panel);
+  border:1px solid var(--rule); border-left:2px solid var(--accent); border-radius:0 3px 3px 0;
+}
+.story .lbl{
+  font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--accent); display:block; margin-bottom:9px;
+}
+.story dl{margin:0; display:grid; grid-template-columns:auto minmax(0,1fr); gap:6px 12px;}
+.story dt{
+  font-family:var(--mono); font-size:11px; color:var(--muted);
+  white-space:nowrap; padding-top:3px;
+}
+.story dd{margin:0; font-size:14.5px; color:var(--ink-2); line-height:1.7;}
+.story dd b{color:var(--ink);}
+@media (max-width:640px){
+  .story dl{grid-template-columns:1fr; gap:2px;}
+  .story dt{padding-top:8px;}
+}
+
+/* ── stack ── */
+.stack{
+  font-family:var(--mono); font-size:12.5px; line-height:2;
+  background:var(--panel); border:1px solid var(--rule); border-radius:3px;
+  padding:20px 22px; overflow-x:auto; color:var(--ink-2); white-space:pre; margin-bottom:26px;
+}
+.stack b{color:var(--accent); font-weight:600;}
+.stack i{color:var(--muted); font-style:normal;}
+
+/* ── pull quote ── */
+.pull{
+  border-left:3px solid var(--signal); background:var(--signal-soft);
+  padding:24px 28px; border-radius:0 3px 3px 0; margin:0 0 30px;
+}
+.pull p{
+  font-family:var(--serif); font-size:clamp(18px,2.5vw,22px); line-height:1.55;
+  margin:0 0 12px; color:var(--ink);
+}
+.pull footer{font-family:var(--mono); font-size:12px; color:var(--muted); letter-spacing:.03em; line-height:1.9;}
+
+/* ── failure list ── */
+.fails{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:16px;}
+.fails li{display:grid; grid-template-columns:auto minmax(0,1fr); gap:16px; align-items:start;}
+.fails .idx{
+  font-family:var(--mono); font-size:11px; color:var(--signal);
+  border:1px solid var(--signal); border-radius:2px; padding:2px 6px;
+  margin-top:4px; white-space:nowrap;
+}
+.fails b{display:block; font-size:15.5px; margin-bottom:3px;}
+.fails span{color:var(--ink-2); font-size:14.5px;}
+
+/* ── knowledge pills ── */
+.kgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(238px,1fr)); gap:11px;}
+.kcard{background:var(--panel); border:1px solid var(--rule); border-radius:3px; padding:13px 15px;}
+.kcard.star{border-color:var(--accent);}
+.kcard h4{margin:0 0 4px; font-size:14.5px; font-weight:600; display:flex; align-items:center; gap:6px;}
+.kcard h4 .s{color:var(--accent); font-size:11px;}
+.kcard p{margin:0; font-size:13px; color:var(--muted); line-height:1.6;}
+
+/* ── certs ── */
+.certs{display:flex; flex-direction:column; gap:9px;}
+.cert{
+  display:flex; gap:14px; align-items:baseline; flex-wrap:wrap;
+  padding-bottom:9px; border-bottom:1px solid var(--rule-2);
+}
+.cert b{font-size:15px; font-weight:600;}
+.cert span{font-family:var(--mono); font-size:12px; color:var(--muted);}
+
+footer.page{
+  padding:36px 0 60px; border-top:1px solid var(--rule-2);
+  font-family:var(--mono); font-size:12.5px; color:var(--muted); line-height:2;
+}
+footer.page b{color:var(--ink); font-weight:600;}
+
+.fade{opacity:0; transform:translateY(6px); animation:in .5s cubic-bezier(.22,.7,.3,1) forwards;}
+.fade:nth-child(1){animation-delay:.04s} .fade:nth-child(2){animation-delay:.1s}
+.fade:nth-child(3){animation-delay:.16s} .fade:nth-child(4){animation-delay:.22s}
+@keyframes in{to{opacity:1; transform:none;}}
+@media (prefers-reduced-motion:reduce){.fade{animation:none; opacity:1; transform:none;}}
+
+@media (max-width:640px){
+  .row{grid-template-columns:1fr;}
+  .job{grid-template-columns:1fr; gap:4px;}
+  .metric{text-align:left; display:flex; gap:14px; align-items:baseline;}
+  .metric b{display:inline;}
+  section{padding:44px 0;}
+}
+</style>
+
+<div class="wrap">
+
+<header class="masthead">
+  <div class="namerow fade">
+    <h1>陳鼎翰</h1>
+    <span class="en">Ding-Han Chen</span>
+  </div>
+  <p class="role">AI 系統工程師 · 遊戲後端 / Legacy 系統現代化</p>
+  <div class="contactbar fade">
+    <a href="mailto:gabrielchen0314@gmail.com">gabrielchen0314@gmail.com</a>
+    <span>台北市</span>
+    <span>軟體工程 6 年 3 個月（含遊戲業 5 年 9 個月）</span>
+    <span>在職中</span>
+  </div>
+
+  <p class="thesis fade">在 <em>legacy 環境</em>裡做 <em>AI 系統工程</em>。</p>
+  <p class="intro fade">白天維護二十年歷史的 MMORPG 伺服器——C++、Delphi、Lua，BIG5 編碼，VS2003 建置鏈。晚上獨立設計交付一組 AI 工程系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，以及一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少</strong>——而多數企業真正要導入 AI 的地方，正好就是那些不能重寫的舊系統。</p>
+
+  <div class="readout fade">
+    <div class="cell"><span class="k">最大專案的測試數</span><span class="v">2,397<small>／12 skipped</small></span></div>
+    <div class="cell"><span class="k">用真實資料驗證契約</span><span class="v">963<small>／0 則不合</small></span></div>
+    <div class="cell"><span class="k">薄核心的行數上限</span><span class="v">1,002<small>／1,500 建置失敗</small></span></div>
+    <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v">25<small>／協定層自己實作</small></span></div>
+  </div>
+  <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">四個數字各自對應一個設計決定，下面各節會展開。都是當時實際跑出來的值。</p>
+</header>
+
+<section>
+  <p class="eyebrow">核心能力</p>
+  <h2>能力矩陣</h2>
+  <p class="sub">前兩格是主戰場，後兩格是它們能落地在真實系統上的原因。</p>
+  <div class="skills">
+    <div class="skill lead">
+      <h4>AI 系統工程</h4>
+      <p><b>RAG</b>：BM25＋向量混合檢索、時間衰減重排、以固定查詢集量 recall<br><b>MCP</b>：協定實作、工具面切分（依使用頻率而非概念）、一次往返取得完整脈絡的冷啟動合約<br><b>Agent</b>：契約驅動的多消費端架構、上下文的分層與預算管理</p>
+    </div>
+    <div class="skill lead">
+      <h4>AI 安全與可靠性</h4>
+      <p><b>Prompt injection</b>：信任邊界設計、判準改由 server 端獨立計算、由系統直接問人而不經模型的確認通道<br><b>可靠性</b>：fail-closed 安全預設、每個請求從接收到通知全程留痕的稽核鏈、以注入違規驗證守門真的會紅（突變測試）、跨模型同儕審查</p>
+    </div>
+    <div class="skill">
+      <h4>語言與平台</h4>
+      <p>Python · C# / .NET 8 · TypeScript · C++ · Delphi / Pascal · Lua · PowerShell<br>ChromaDB · SQLite (WAL) · Docker · Windows API · Unity3D</p>
+    </div>
+    <div class="skill">
+      <h4>交付與工具鏈</h4>
+      <p>PyInstaller ＋ Inno Setup 打包與升級策略 · VS Code Extension · Debug Adapter Protocol 實作 · legacy 建置鏈整合 · 多編碼（BIG5 / GBK）安全讀寫</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">工作經歷</p>
+  <h2>經歷</h2>
+  <div class="exp">
+    <article class="job">
+      <div class="when"><b>2020.11 – 現職</b>5 年 9 個月</div>
+      <div>
+        <h3>中華網龍股份有限公司</h3>
+        <p class="title">遊戲工程師 · 組長</p>
+        <ul>
+          <li>維護多條 MMORPG 產品線的伺服器與客戶端：<b>Delphi / Pascal 伺服器</b>、<b>C++ / UE2 客戶端</b>、<b>Unity + Lua</b> 手遊，含台港與中國多地版本</li>
+          <li>建置鏈現代化：自行開發 VS Code Extension，把 <b>VS.NET 2003 + UE2</b> 的專案接上現代 IDE，並<b>自行實作 UnrealScript 的 Debug Adapter</b>（往引擎 C++ 注入 DAP server）</li>
+          <li>導入 AI 輔助開發流程：解決 legacy 專案（BIG5 編碼）被 AI 工具寫壞的根本問題，並建立自動化的守門機制</li>
+          <li>帶領<b>零基礎、不寫程式的 QA 團隊導入 AI</b>：設計六階段通關制路線圖與可直接開課的教學講義</li>
+        </ul>
+      </div>
+    </article>
+    <article class="job">
+      <div class="when"><b>2019.12 – 2020.05</b>6 個月</div>
+      <div>
+        <h3>尚芳國際興業股份有限公司</h3>
+        <p class="title">軟體工程師</p>
+        <ul>
+          <li>軟體開發與維護</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">系統設計 · 以個人時間開發</p>
+  <h2>四個系統，用 JSON Schema 契約掛在一起</h2>
+  <p class="sub"><strong>這組系統由我獨力開發，但機制全部照團隊規格。</strong>契約邊界、code review、五段稽核鏈、機器強制的閘門——它們存在的理由都是同一句話：<strong>不要依賴任何人記得</strong>。這是我在職務上的工作標準，不會因為某個專案只有我一個人寫就放掉。所以核心「不長業務邏輯」不是寫在文件裡的原則，是 LOC 上限、import 規則與禁止呼叫 LLM 的建置失敗。<br>也因為是契約驅動，<strong>從個人擴展到團隊共用不是重寫，是新增一個消費端</strong>——這點已經在三個消費端上驗證過，其中一個刻意用異語言實作。</p>
+  <div class="stack"><b>AI Memory Vault</b>     知識層 —— 知識庫的 RAG 檢索與 MCP 工具面，AI 進場時自動取得脈絡
+       <i>│</i>
+       <i>│ 契約：JSON Schema 檔案介面。生產者不認識任何消費端，</i>
+       <i>│ 　　  所以加一個新的消費端不需要動到上游。</i>
+       <i>▼</i>
+<b>薄核心</b>              只做一件事：掃描狀態、產出決策。<b>不執行、不投遞</b>
+       <i>│</i>             <i>「不長業務邏輯」由機器強制：超過 1500 行即建置失敗</i>
+       <i>│</i>
+       <i>├──▶</i> <b>任務執行平台</b>  以低權限帳號實際執行，全程稽核，出錯一律往拒絕倒
+       <i>└──▶</i> <b>觀測面板</b>      看得到系統狀態，<b>但沒有任何寫入權限</b>
+                        <i>刻意用 TypeScript 寫 —— 契約宣稱自己語言中立，那就要有證據</i></div>
+
+  <div class="rows">
+    <article class="row">
+      <div>
+        <h3 class="name">AI Memory Vault <span class="tag">Python · ChromaDB · MCP</span></h3>
+        <p>把個人知識庫變成 AI 長期記憶的 RAG 後端。BM25 + 向量混合檢索再做時間衰減重排，25 個 MCP 工具，四種部署形態同一份程式碼。<b>自 2026-04 起是我日常工作的一部分</b>——動 legacy 原始碼前的編碼守門、寫程式前的規範召回、跨對話的專案脈絡延續。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · 一個守門空轉了四個月</span>
+          <dl>
+            <dt>現象</dt><dd>檢索品質的回歸閘門存在、排程每次都跑、程式碼沒壞。但它上線後<b>四個月沒有攔下過任何東西</b>。</dd>
+            <dt>根因</dt><dd>它的結果<b>沒有被算進紅燈計數</b>——算完了，寫進 log，然後就沒有然後了。整條告警路徑從來不會被觸發。</dd>
+            <dt>解法</dt><dd>不是修那個閘門，是把問題重新定義成一句話：<b>「這裡失敗了，誰會知道？」</b>——答案是「沒有人」就代表這段程式碼還沒寫完。這條後來反過來查出更多同型缺陷。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">同族：ChromaDB 擁有權四層守衛全錯</span>
+          <span class="chip">.pyc 被打進出貨檔且 git 看不到</span>
+          <span class="chip">升級凍結</span>
+        </div>
+      </div>
+      <div class="metric"><b>2,397</b>tests · v4.2.x</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">Remote AI Task Platform <span class="tag">Python · SQLite · Discord</span></h3>
+        <p>讓 AI CLI 以低權限帳號、非互動方式在背景執行任務。重心在安全邊界與稽核——五段稽核鏈，<code>request_id</code> 全程貫穿。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · dry-run 變成了實彈執行</span>
+          <dl>
+            <dt>現象</dt><dd>送一筆標記為「只演練不執行」的動作，稽核鏈停在「已入隊」，後兩段沒有。看起來像卡住了。</dd>
+            <dt>根因</dt><dd>比卡住嚴重得多：一個<b>還在跑的舊版本行程</b>從共用佇列搶走了它，而舊程式碼<b>不認得 dry-run 這個欄位</b>——它真的執行了。</dd>
+            <dt>解法</dt><dd>兩道<b>獨立</b>守衛：OS 檔案鎖擋同版本共存、行程掃描擋跨版本共存（舊碼不知道有鎖，自然不會去搶）。<b>掃描失敗一律當作「有」</b>——會默默失效的偵測等於沒裝。用突變測試驗證兩道都真的會咬。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">降級攻擊 / 燒錢攻擊：判準取自不可信來源</span>
+          <span class="chip">守衛條件過窄，推翻自己的論證</span>
+        </div>
+      </div>
+      <div class="metric"><b>528</b>tests · Phase 1B</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">Jarvis Core / Dashboard <span class="tag">Python · TypeScript</span></h3>
+        <p>薄核心加三個契約消費端。第三個故意用 TypeScript 寫，因為契約宣稱自己語言中立——而一個宣稱要有證據。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · 我讓同一個閘門失敗了兩次才看出它是錯的</span>
+          <dl>
+            <dt>規則</dt><dd>某功能要解鎖，必須先「連續 7 天穩定運行」。判準是稽核裡有連續 7 天的對應事件。</dd>
+            <dt>現象</dt><dd>驗收日去查，7 天為 <b>0</b>。換一台機器再驗，還是 <b>0</b>。</dd>
+            <dt>根因</dt><dd>判準用的是<b>使用紀錄，不是健康紀錄</b>——一個活著但沒人開的服務，跟一個死掉的服務，在稽核裡是<b>完全相同的零筆</b>。於是「七天穩定期」實際要求的是「連續七天有人天天去點它」。</dd>
+            <dt>解法</dt><dd>不重新起算，而是<b>改判準</b>：加一條每日心跳，讓「活著」自己留下證據。而且心跳本身也要能被發現壞掉——否則只是把缺陷換個位置。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">手寫 fixture 證明不了契約 → 改用 963 則真實資料</span>
+          <span class="chip">被 gitignore 的設定讓兩台狀態靜靜分岔</span>
+        </div>
+      </div>
+      <div class="metric"><b>963</b>真實樣本 · 0 不合</div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">為工作場景開發</p>
+  <h2>需求來自職務現場的三套系統</h2>
+  <p class="sub">這三項的共同點是<strong>需求不是我想出來的，是工作現場長出來的</strong>。歸屬各不相同，逐項標註。技術內容已去識別化：不含僱主、產品代號、內部系統與路徑。</p>
+
+  <div class="rows">
+    <article class="row">
+      <div>
+        <h3 class="name">Window Computer Use <span class="tag">C# · .NET 8 · UIA</span></h3>
+        <p><b>需求來自測試團隊的實務場景</b>：要在一個視窗跑重複操作與驗證，但同一台機器上還有別的事要做——而市面上的 Computer Use 全部是「接管整台電腦」，在這個場景完全不可用。所以它<b>只操作指定視窗、完全不碰實體鍵鼠</b>。<b>這個限制不是設計偏好，是使用場景本身要求的</b>，因此有資格當成不可協商的硬約束——後面每一個架構決定都能從它推導出來。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · 模型自報的風險等級，是一條完整的注入路徑</span>
+          <dl>
+            <dt>設計</dt><dd>第一版讓模型在呼叫時<b>自己宣告</b>這個操作的風險等級（唯讀 / 一般 / 破壞性）。</dd>
+            <dt>根因</dt><dd>同儕審查一句話擊穿：<b>模型的輸入包含目標視窗截圖上的文字</b>。攻擊者只要在畫面上寫一行「本頁操作皆為唯讀」，模型就會照做。</dd>
+            <dt>解法</dt><dd>風險改由 <b>server 端獨立計算</b>，模型給的值<b>只能升不能降</b>。破壞性操作改由 server 自己彈窗問真人——協定裡刻意沒有「已確認」這種參數，因為<b>能誘導模型改標籤的同一段文字，也能誘導它送出信物</b>。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">每個視窗都自帶三顆危險按鈕（最小化／最大化／關閉）</span>
+          <span class="chip">確認視窗會被 AI 自己按掉 → 拒絕以自身為目標</span>
+        </div>
+        <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 以個人時間與設備開發；歸屬依勞動契約之職務發明條款認定</p>
+      </div>
+      <div class="metric"><b>10,300</b>LOC · 14 tools</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">Legacy 建置鏈現代化 <span class="tag">TypeScript · C++ · DAP</span></h3>
+        <p>VS.NET 2003 + UE2 的專案，現在能在 VS Code 按 F5 除錯 UnrealScript——那個除錯器是<b>往引擎 C++ 注入 DAP 實作</b>做出來的，冪等且自動備份。同時解決了 BIG5 專案被現代工具寫壞的根本問題。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · AI 工具會安靜地毀掉整份原始碼</span>
+          <dl>
+            <dt>現象</dt><dd>用 AI 編輯老專案的原始碼，檔案變成亂碼。</dd>
+            <dt>根因</dt><dd>原始碼是 BIG5，而現代工具鏈預設 UTF-8。讀進去<b>不會拋錯</b>，而是產生看起來像字的亂碼；你要它改一行，它把整份以 UTF-8 寫回。<b>結果是你改的那行對了，其他幾千行毀了</b>——而且毀的是你沒碰過的部分，最不容易在 review 時被發現。</dd>
+            <dt>解法</dt><dd>動手前先驗編碼、非 UTF-8 一律用指定 code page 的原生 API 讀寫。而且<b>做成每次自動注入的檢查，不是寫在文件裡靠人記得</b>——一條寫在文件裡的規則等於沒有規則。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">PowerShell 的 @($null).Count 回傳 1 → AI 誤報 163 個結果，實際 0 個</span>
+          <span class="chip">devenv.exe 建置會「成功」但看不到任何訊息，只有 .com 版本會輸出</span>
+        </div>
+        <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 職務中開發，著作權屬雇主</p>
+      </div>
+      <div class="metric"><b>30 秒</b>新專案上手</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">團隊 AI 能力養成 <span class="tag">課程設計</span></h3>
+        <p>帶零基礎、不寫程式的團隊從 0 開始。最重要的決定是把 12 週期程改成六階段通關制——對零基礎的人，時間表比能力門檻更容易讓人放棄。</p>
+        <div class="story">
+          <span class="lbl">最值得講的一個 · 拿掉一個機制的時候，要問它原本順帶擋住了什麼</span>
+          <dl>
+            <dt>現象</dt><dd>初版排了 12 週的課程期程，被打回。</dd>
+            <dt>根因</dt><dd><b>對零基礎的人，時間表比能力門檻更容易讓人放棄</b>——一個落後於進度的人會覺得自己失敗了；一個還沒通關的人，只是還在路上。</dd>
+            <dt>解法</dt><dd>改成六階段通關制。<b>但拿掉期限會產生新風險：通關條件會被放水</b>，所以同時補上「由主管憑實物認定」，並把「誰來認定通關」列為必須由團隊拍板、不可由講師或 AI 代決的項目。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">講義驗收標準不是「內容正確」，是「拿著就能開課」</span>
+          <span class="chip">需要組織決策的部分，要明確標記它是空的</span>
+        </div>
+        <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 職務中開發，教材著作權屬雇主</p>
+      </div>
+      <div class="metric"><b>6</b>階段 · 通關制</div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">不是 side project</p>
+  <h2>這些系統每天在真實的工作流程裡跑</h2>
+  <p class="sub">主要是 <strong>AI Memory Vault</strong>（自 2026-04 起）與<strong>任務執行平台</strong>：它們不是 demo，是每天實際在用的工具。也正因為使用場景會接觸到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>——下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
+
+  <div class="skills" style="margin-bottom:26px;">
+    <div class="skill lead">
+      <h4>邊界一 · 隱私路由（fail-closed）</h4>
+      <p>任務內容或來源路徑命中敏感關鍵詞時，<b>在派工前強制改用本機模型</b>——不管那個任務宣告要用哪個雲端服務。防的是專有資料透過無人值守的排程被自動送往外部 API。</p>
+    </div>
+    <div class="skill lead">
+      <h4>邊界二 · 去識別化閘門</h4>
+      <p>任何對外產出前的掃描層。規則<b>自帶測試樣本</b>讓新增規則自動取得覆蓋，並且<b>掃 git 全歷史</b>——因為識別字刪掉再 commit，歷史裡那一版仍然讀得到。</p>
+    </div>
+    <div class="skill lead">
+      <h4>邊界三 · 內容分區</h4>
+      <p>知識庫依<b>所有權</b>分區。敏感區不進索引、不進版控；寫入公司資產時另有一套規則，禁止帶入任何個人系統的名稱與路徑。</p>
+    </div>
+    <div class="skill">
+      <h4>它換來了什麼</h4>
+      <p>真實使用產生的回報，是任何測試都生不出來的。<b>「我重開了但沒觸發」</b>——這句話揭露了一個只在打包版發作的缺陷：更新提示掛在一個幾乎不會發生的事件上，而它從原始碼跑永遠正常。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">AI Memory Vault · 帶進團隊需要什麼</p>
+  <h2>把 AI Memory Vault 帶進團隊，缺的不是重寫，是三件事</h2>
+  <p class="sub">上面那個 <strong>RAG 知識庫</strong>目前是個人在用的，但它的形狀從第一天就是多方協作的——契約驅動、多消費端、依所有權分區。所以「擴展成團隊共用」不是重新設計，而是補上三個單人環境用不到的東西。<strong>這三件我都已經踩過相鄰的問題</strong>，不是紙上推演。</p>
+
+  <div class="rows">
+    <article class="row">
+      <div>
+        <h3 class="name">① 共用的知識層 <span class="tag">已驗證相鄰情境</span></h3>
+        <p>知識以純 Markdown 存在 git repo，換成組織的 remote 就是共用層。<b>跨節點同步我已經實作並踩過坑</b>——只是節點目前是兩台機器而不是兩個人：自動提交的排程衝突、以及合併策略對結構化檔案的破壞（union 對「行的集合」安全，對 JSON 會產出語法不合法的內容）。</p>
+      </div>
+      <div class="metric"><b>2</b>節點已運行</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">② 寫入權限與審查流程 <span class="tag">需新增</span></h3>
+        <p>現在是單人直寫。團隊版需要 PR 流程——而因為知識是<b>純 Markdown</b>不是資料庫，review 天然可行，用的還是團隊本來就熟悉的工具。這也是當初選「檔案系統 + git」而不是選資料庫的理由之一。</p>
+      </div>
+      <div class="metric"><b>0</b>新技術債</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">③ 誰能看哪一區 <span class="tag">分區已存在</span></h3>
+        <p>現行架構<b>已經依所有權分區</b>：共用規則、個人經驗、敏感內容各自分開，敏感區不進索引也不進版控。團隊版要加的是存取控制那一層，而不是重新切分內容——<b>因為「哪些該共享、哪些該私有」這個判斷已經做過了</b>。</p>
+      </div>
+      <div class="metric"><b>3</b>層分區就緒</div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">工作信念</p>
+  <blockquote class="pull">
+    <p>崩潰會叫你，沉默的失敗不會——它讓系統看起來一切正常，而事情就是沒發生。</p>
+    <footer>所以寫下任何可能失敗的路徑時，先回答：「這裡失敗了，誰會知道？」<br>答案如果是「沒有人」，這段程式碼就還沒寫完。</footer>
+  </blockquote>
+
+  <p class="eyebrow">三個我犯過的錯</p>
+  <h2>而且它們教會我的比成功多</h2>
+  <p class="sub">選這三個，因為它們展現的是判斷力，不是能力不足。</p>
+  <ul class="fails">
+    <li>
+      <span class="idx">TEST</span>
+      <div>
+        <b>我自己寫的守門測試，永遠不會紅</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">AI Memory Vault · 同儕審查抓到，不是測試抓到</span>
+        <span>那個測試想守「每個排程任務都要有對應的處理函式」，作法是用正則抓原始碼裡字面的 <code>id="…"</code>。但實際的註冊寫法是變數，所以它回傳<b>空集合</b>——而<strong>空集合減任何集合還是空集合，差集永遠是空的</strong>。更刺的是同一個檔案裡有另一條自檢，卻只守了差集的右邊。改成讀真正的註冊表後，實測 16 對 16。</span>
+      </div>
+    </li>
+    <li>
+      <span class="idx">VERIFY</span>
+      <div>
+        <b>修一個 bug，驗證階段連續犯三次同型錯誤</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">AI Memory Vault · 打包版才發作的缺陷</span>
+        <span>修 bug 只花了一點時間，驗證卻連錯三次、每次都一度以為修正失敗：<b>①</b> 驗到的是舊版——新執行檔的呼叫被轉給還在跑的舊服務，入口是新的、幹活的是舊的；<b>②</b> 測試根本沒執行，而我把錯誤輸出丟進了 <code>/dev/null</code>；<b>③</b> 我自己寫的錯誤處理吞掉了例外，導致第二點那個路徑錯誤<b>連我自己都查不出來</b>。之後做了產物身分機制，讓「我驗到的是不是我剛建的那份」變成可斷言的事實而不是靠記憶——<b>安裝後首次實戰就命中了</b>。</span>
+      </div>
+    </li>
+    <li>
+      <span class="idx">HUMAN</span>
+      <div>
+        <b>不採信使用者的直接觀察</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">Legacy 建置鏈 · 這是互動層面的失敗，不是技術問題</span>
+        <span>排查一個 VS Code 擴充的通知問題時，使用者多次明確描述「沒有彈窗、只有鈴鐺紅點，其他工具都會彈」，我仍一度堅持往命令面板、重新載入視窗的方向查，來回耗掉不少時間。<b>使用者描述的是畫面上正在發生的事實，那是第一手觀察；我拿的是對系統行為的推論。</b><strong>現場證據跟我的模型衝突時，錯的預設是我的模型。</strong></span>
+      </div>
+    </li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">知識體系</p>
+  <h2>十二個知識點，每一個都能在白板前講給別人聽</h2>
+  <p class="sub">上面每一個難題，我都往上抽了一層寫成可複用的知識點——因為<strong>認出「同一個錯的形狀」比記住個案有用得多</strong>。我在三個完全不同的場景認出過同一個錯：稽核遮蔽只遮了一個入口、視窗框架過濾只涵蓋一種提供者、同樣的漏洞又在另一個渲染引擎上重演。<br>每份的結構固定：一句話 → 為什麼需要它 → 心智模型 → 機制 → 實際案例 → <strong>60 秒講稿</strong> → 常見追問 → 自我檢核。<span style="color:var(--accent)">◆</span> 是最常被追問的四個。</p>
+  <div class="kgrid">
+    <div class="kcard star"><h4><span class="s">◆</span>混合檢索</h4><p>向量會把專有名詞「理解」掉，BM25 對不上使用者的描述。加權合併再依時間重排。</p></div>
+    <div class="kcard star"><h4><span class="s">◆</span>MCP 與工具面設計</h4><p>難的不是協定，是工具怎麼切。判準是使用頻率，不是概念相似度。</p></div>
+    <div class="kcard star"><h4><span class="s">◆</span>沉默的失敗</h4><p>有跑但結果沒出口、守衛守錯對象、只有一條分支留痕、日誌沒地方可寫。</p></div>
+    <div class="kcard star"><h4><span class="s">◆</span>Prompt Injection 與信任邊界</h4><p>模型讀進去的都是資料不是指令，它自己算出的值也在不可信側。</p></div>
+    <div class="kcard"><h4>記憶分層與注入預算</h4><p>AI 不會主動想到要查一條它不知道存在的規則。</p></div>
+    <div class="kcard"><h4>多模型同儕審查</h4><p>一個人開發沒有 reviewer，就讓另一個模型當——迭代到它說 APPROVED。</p></div>
+    <div class="kcard"><h4>fail-closed</h4><p>界線在「時機」不在「重要性」：這件事做了沒有。</p></div>
+    <div class="kcard"><h4>透過真實入口驗證</h4><p>「我改好了測試也過了」藏著三個沒被檢查的假設。</p></div>
+    <div class="kcard"><h4>最小權限的工程落地</h4><p>「沒給」比「擋住」強一個量級。</p></div>
+    <div class="kcard"><h4>契約驅動解耦</h4><p>用檔案格式當介面。手寫 fixture 綠燈只證明 schema 自我一致。</p></div>
+    <div class="kcard"><h4>Legacy 編碼與工具鏈</h4><p>UTF-8 不是預設，是假設。而這個假設會安靜地毀掉你的檔案。</p></div>
+    <div class="kcard"><h4>打包與散布</h4><p>出貨的那份跟你測的那份是不是同一份？</p></div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">證照與訓練</p>
+  <h2>資格</h2>
+  <div class="certs">
+    <div class="cert"><b>乙級數位電子技術士</b><span>勞動部勞動力發展署技能檢定中心</span></div>
+    <div class="cert"><b>丙級工業電子技術士</b><span>勞動部勞動力發展署技能檢定中心</span></div>
+    <div class="cert"><b>Unity 跨平台 VR 開發工程師養成班　結訓</b><span>資策會 UMVR03</span></div>
+  </div>
+</section>
+
+<footer class="page">
+  <b>關於數據</b>　頁面上的測試數、版本、位元組數都是當時實際跑出來的值，不是估計。會過時，但不會是編的。<br>
+  <b>完整技術文件</b>　六個專案各有一份完整的「難題 → 根因 → 解法」文件，面試時可提供。<br>
+  <b>聯絡</b>　<a href="mailto:gabrielchen0314@gmail.com">gabrielchen0314@gmail.com</a>
+</footer>
+
+</div>

@@ -1,0 +1,19 @@
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 編輯器
+.vscode/
+.idea/
+*.swp
+*~
+
+# 暫存與備份
+*.bak
+*.bak-*
+*.tmp
+~$*
+
+# 若日後此 repo 轉為 public，把發布網址移進這個檔案
+.publish-target
