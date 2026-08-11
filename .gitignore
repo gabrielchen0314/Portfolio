@@ -17,3 +17,6 @@ Desktop.ini
 
 # 若日後此 repo 轉為 public，把發布網址移進這個檔案
 .publish-target
+
+# 工具產生的預覽副本（內容與 Vault 的 portfolio-knowledge/_site 相同，不進作品集 repo）
+.preview/
