@@ -15,7 +15,8 @@ Desktop.ini
 *.tmp
 ~$*
 
-# 若日後此 repo 轉為 public，把發布網址移進這個檔案
+# Artifact 履歷時期存放私有發布網址用（2026-08-12 改走 GitHub Pages 後已廢止）。
+# 條目保留：舊機器上可能還有殘留的該檔案，別讓它意外進版控。
 .publish-target
 
 # 工具產生的預覽副本（內容與 Vault 的 portfolio-knowledge/_site 相同，不進作品集 repo）
