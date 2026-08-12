@@ -6,14 +6,16 @@
 
 ## 發布網址
 
-```
-https://claude.ai/code/artifact/REDACTED
-```
+網址**不在版控裡**，存於本機的 `.publish-target`（已 gitignore）。
 
 目前為**私有**，只有本人看得到。要給別人看必須從該頁面的分享選單明確分享。
 
-> ⚠️ 若此 repo 日後轉為 public，把這行網址移到一個 gitignore 的檔案裡再公開——
-> 這個頁面含真實姓名與 email。
+> ⚠️ 那個頁面含真實姓名與 email，所以網址不進版控——本 repo 一旦轉為 public，
+> 版控裡的一切都會跟著公開，**包含歷史**。
+>
+> 🔴 `.publish-target` 不進版控 ⇒ **換機器或重新 clone 就沒有它**。
+> 另存一份在版控外的私人筆記裡。弄丟網址的代價不是「找不到頁面」，是下次更新履歷
+> 會產生**第二個**網址，而先前分享出去的連結會永遠停在舊版本。
 
 ---
 
@@ -33,7 +35,7 @@ Artifact 的規則是「**同一個對話 + 同一個檔案路徑** → 更新�
 否則會產生一個全新的網址，而履歷上那個連結會停在舊版本。
 
 ```
-Artifact(file_path="web/index.html", url="https://claude.ai/code/artifact/REDACTED")
+Artifact(file_path="web/index.html", url="<.publish-target 裡的那行網址>")
 ```
 
 ---
