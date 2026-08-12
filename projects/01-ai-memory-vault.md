@@ -2,7 +2,7 @@
 
 > **把個人知識庫變成 AI 的長期記憶。**
 > Python · ChromaDB · LangChain · FastMCP · PyInstaller · Inno Setup · Tauri
-> 2026-04 起，進行中｜2,601 tests｜29 個 MCP 工具｜v4.3.0
+> 2026-04 起，進行中｜2,601 tests｜25 個 MCP 工具｜v4.3.0
 
 ---
 
@@ -26,7 +26,8 @@
 
 ```
 Transport   main.py 依 --mode 路由到 stdio / SSE / CLI
-MCP Tools   mcp_app/tools/ — 29 個工具，15 個模組
+MCP Tools   mcp_app/tools/ — 29 個工具實作，預設曝露 25 個，15 個模組
+            （運維／管理類 4 個預設關閉以降低 context 負擔，config.mcp.expose_admin_tools）
 Services    services/ — VaultService 門面、Scheduler、Instinct、Extractor
 Core        core/ — Indexer、Retriever、Embeddings、VectorStore、Migrations
 Config      config.py — AppConfig dataclass，從 DATA_DIR/config.json 載入
@@ -298,7 +299,7 @@ assert _registered_ids() - handler_ids == set()
 ## 六、面試怎麼講
 
 **如果只有 60 秒**：
-> 我做了一個把個人知識庫變成 AI 長期記憶的 RAG 後端，用 MCP 協定暴露 29 個工具，支援四種部署形態。技術上是 BM25 加向量以加權 RRF 融合，再依文件日期做有界的 recency 重排。但這個專案真正教會我的不是 RAG——是**「沉默的失敗」**：我在裡面抓到十幾個「機制存在、但掛在錯的地方、而且失敗不會叫」的缺陷，包括一個空轉了四個月的品質閘門，和一個因為差集永遠是空集合所以永遠不會紅的守門測試。這讓我養成一個習慣：寫任何可能失敗的路徑時，先回答「這裡失敗了誰會知道」。
+> 我做了一個把個人知識庫變成 AI 長期記憶的 RAG 後端，用 MCP 協定暴露 25 個工具（實作 29 個，運維類的 4 個預設關閉以省 context），支援四種部署形態。技術上是 BM25 加向量以加權 RRF 融合，再依文件日期做有界的 recency 重排。但這個專案真正教會我的不是 RAG——是**「沉默的失敗」**：我在裡面抓到十幾個「機制存在、但掛在錯的地方、而且失敗不會叫」的缺陷，包括一個空轉了四個月的品質閘門，和一個因為差集永遠是空集合所以永遠不會紅的守門測試。這讓我養成一個習慣：寫任何可能失敗的路徑時，先回答「這裡失敗了誰會知道」。
 
 **如果對方追問「你怎麼確保品質」**：
 > 三層。第一層是測試，2,601 個，但我不信任「測試綠」——所以第二層是**突變驗證**：故意注入違規，確認測試真的會紅。第三層是**跨模型同儕審查**，我把實作送給另一個模型審，單執行緒迭代到它給 APPROVED 為止。最近一次六輪，抓到三個真問題，**沒有一個是測試抓到的**。
