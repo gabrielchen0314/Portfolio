@@ -11,7 +11,7 @@
 
 | # | 專案 | 期間 | 技術棧 | 規模 |
 |---|---|---|---|---|
-| [01](01-ai-memory-vault.md) | AI Memory Vault | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | 2,397 tests · 25 MCP tools · v4.2.x |
+| [01](01-ai-memory-vault.md) | AI Memory Vault | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | 2,603 tests · 25 MCP tools · v4.3.0 |
 | [02](02-remote-ai-task-platform.md) | Remote AI Task Platform | 2026-07 ~ 進行中 | Python · SQLite(WAL) · Discord.py · Windows API | 528 tests · Phase 1B 完成 |
 | [04](04-jarvis-core-and-dashboard.md) | Jarvis Core / Dashboard | 2026-07 ~ 維持 | Python · TypeScript(Node 原生) · JSON Schema | 135 + 87 tests · kernel ≤1500 LOC |
 | [07](07-team-adoption-path.md) | AI Memory Vault 帶進團隊的落地路徑 | — | 設計推導 | 三個缺口 · 三個風險 |
@@ -65,3 +65,33 @@
 
 3. **安全預設的方向**（**知識點**）
    一個預設是開的安全開關不是開關，是裝飾。
+
+---
+
+## 知識點 × 專案：這些經驗是從哪裡長出來的
+
+十二個知識點，對照它們各自在哪個專案被真的踩過。
+**這張表的用途是讓你挑，而不是我挑**——指著任何一個 ●●● 問下去，都有一個具體案例、
+一組當時的數字，以及一次判斷失誤可以講。
+
+| 知識點 | 01 Vault | 02 RATP | 03 WCU | 04 Jarvis | 05 Legacy | 06 導入 |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| 混合檢索（BM25＋向量＋時間重排） | ●●● | | | | | |
+| MCP 協定與工具面設計 | ●●● | ●● | ●● | | | |
+| 記憶分層與注入預算 | ●●● | | | | | |
+| **沉默的失敗** | ●●● | ●●● | ●● | ●●● | ●● | |
+| **fail-closed（安全預設的方向）** | ●● | ●●● | ●●● | ●● | | |
+| Prompt Injection 與信任邊界 | | ●● | ●●● | | | |
+| **透過真實入口驗證** | ●●● | ●● | ●●● | ●● | ● | ●● |
+| 跨模型同儕審查 | ●●● | ●●● | ●●● | ●●● | | |
+| 最小權限的工程落地 | ● | ●●● | ●●● | ●● | | |
+| 契約驅動解耦 | ●● | ● | | ●●● | | |
+| Legacy 編碼與工具鏈 | ● | ● | | | ●●● | |
+| 打包與散布 | ●●● | | ●● | | ● | |
+
+●●● 核心經驗，可以講五分鐘　●● 有實際案例　● 有碰到
+
+三個粗體的知識點就是上一節那三個共同主題——它們**橫跨五個專案以上**，
+而這正是為什麼它們被寫成規則而不是筆記。
+
+> 07（從個人到團隊的落地路徑）不在表內：它是設計推導，不是實作經驗。

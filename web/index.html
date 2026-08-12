@@ -258,11 +258,19 @@ footer.page b{color:var(--ink); font-weight:600;}
 @media (prefers-reduced-motion:reduce){.fade{animation:none; opacity:1; transform:none;}}
 
 @media (max-width:640px){
+  .wrap{padding:0 18px;}
   .row{grid-template-columns:1fr;}
   .job{grid-template-columns:1fr; gap:4px;}
-  .metric{text-align:left; display:flex; gap:14px; align-items:baseline;}
+  .metric{text-align:left; display:flex; gap:14px; align-items:baseline; white-space:normal;}
   .metric b{display:inline;}
   section{padding:44px 0;}
+  /* 長 chip 在窄螢幕必須能折行，否則單一個 chip 就會把整頁撐寬 */
+  .chip{white-space:normal;}
+  .contactbar{gap:6px 8px; font-size:12px;}
+  .stack{font-size:11.5px; padding:16px 14px;}
+  .pull{padding:18px 20px;}
+  .fails li{grid-template-columns:1fr; gap:6px;}
+  .fails .idx{justify-self:start; margin-top:0;}
 }
 </style>
 
@@ -282,10 +290,10 @@ footer.page b{color:var(--ink); font-weight:600;}
   </div>
 
   <p class="thesis fade">在 <em>legacy 環境</em>裡做 <em>AI 系統工程</em>。</p>
-  <p class="intro fade">白天維護二十年歷史的 MMORPG 伺服器——C++、Delphi、Lua，BIG5 編碼，VS2003 建置鏈。晚上獨立設計交付一組 AI 工程系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，以及一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少</strong>——而多數企業真正要導入 AI 的地方，正好就是那些不能重寫的舊系統。</p>
+  <p class="intro fade">白天維護二十年歷史的 MMORPG 產品線——伺服器是 Delphi，客戶端是 C++ 與 UE2，手遊那條是 Unity＋Lua；BIG5 編碼，VS2003 建置鏈。晚上獨立設計交付一組 AI 工程系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，以及一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少</strong>——而多數企業真正要導入 AI 的地方，正好就是那些不能重寫的舊系統。</p>
 
   <div class="readout fade">
-    <div class="cell"><span class="k">最大專案的測試數</span><span class="v">2,397<small>／12 skipped</small></span></div>
+    <div class="cell"><span class="k">最大專案的測試數</span><span class="v">2,603<small>／v4.3.0</small></span></div>
     <div class="cell"><span class="k">用真實資料驗證契約</span><span class="v">963<small>／0 則不合</small></span></div>
     <div class="cell"><span class="k">薄核心的行數上限</span><span class="v">1,002<small>／1,500 建置失敗</small></span></div>
     <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v">25<small>／協定層自己實作</small></span></div>
@@ -312,7 +320,7 @@ footer.page b{color:var(--ink); font-weight:600;}
     </div>
     <div class="skill">
       <h4>交付與工具鏈</h4>
-      <p>PyInstaller ＋ Inno Setup 打包與升級策略 · VS Code Extension · Debug Adapter Protocol 實作 · legacy 建置鏈整合 · 多編碼（BIG5 / GBK）安全讀寫</p>
+      <p>PyInstaller ＋ Inno Setup 打包與升級策略 · VS Code Extension · Debug Adapter Protocol 實作 · legacy 建置鏈整合 · 多編碼（BIG5 / GBK）安全讀寫<br><b>整條生命週期都自己走過</b>：設計 → 實作 → 打包 → 安裝 → 升級 → 事故 → 修復</p>
     </div>
   </div>
 </section>
@@ -382,7 +390,7 @@ footer.page b{color:var(--ink); font-weight:600;}
           <span class="chip">升級凍結</span>
         </div>
       </div>
-      <div class="metric"><b>2,397</b>tests · v4.2.x</div>
+      <div class="metric"><b>2,603</b>tests · v4.3.0</div>
     </article>
 
     <article class="row">
@@ -480,7 +488,7 @@ footer.page b{color:var(--ink); font-weight:600;}
     <article class="row">
       <div>
         <h3 class="name">團隊 AI 能力養成 <span class="tag">課程設計</span></h3>
-        <p>帶零基礎、不寫程式的團隊從 0 開始。最重要的決定是把 12 週期程改成六階段通關制——對零基礎的人，時間表比能力門檻更容易讓人放棄。</p>
+        <p>帶零基礎、不寫程式的團隊從 0 開始。最重要的決定是把 12 週期程改成六階段通關制——對零基礎的人，時間表比能力門檻更容易讓人放棄。<b>六階段路線圖與六份可直接開課的講義已完成，正在逐階段落地。</b></p>
         <div class="story">
           <span class="lbl">最值得講的一個 · 拿掉一個機制的時候，要問它原本順帶擋住了什麼</span>
           <dl>
