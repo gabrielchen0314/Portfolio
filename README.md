@@ -24,11 +24,6 @@ RATP                     執行層：低權限帳號、五段稽核、fail-close
 jarvis-dashboard         觀測層：有 UI 沒權限（結構上無法旁路）
 ```
 
-外加兩條獨立支線：
-
-- **window-computer-use** — 視窗鎖定式 Computer Use MCP Server（C#/.NET 8），硬性禁止佔用實體鍵鼠
-- **legacy toolchain modernization** — 把 2003 年的建置鏈接上現代 IDE，含自行實作的 DAP 除錯器
-
 ---
 
 ## 專案卷
@@ -42,19 +37,6 @@ jarvis-dashboard         觀測層：有 UI 沒權限（結構上無法旁路）
 | [04](projects/04-jarvis-core-and-dashboard.md) | **Jarvis Core / Dashboard** | Python · TypeScript · JSON Schema | 契約驅動的薄核心 + 零建置觀測面板 |
 
 延伸：[07 · AI Memory Vault 從個人到團隊的落地路徑](projects/07-team-adoption-path.md)
-
-### ⚖️ 為工作場景開發（需求來自職務現場）
-
-這三項的共同點是**需求不是我想出來的，是工作現場長出來的**。
-於此記錄的是技術問題與解法，**不是所有權主張**；歸屬各不相同，逐項標註。
-**專案卷**已去識別化：不含產品代號、內部系統、工單與機器路徑。
-（履歷頁另載明任職公司——那是履歷的必要欄位，不在去識別化的範圍內。）
-
-| # | 專案 | 技術棧 | 一句話 | 歸屬 |
-|---|---|---|---|---|
-| [03](projects/03-window-computer-use.md) | **Window Computer Use** | C# · .NET 8 · UIA · WGC | 鎖定單一視窗的 Computer Use，不碰你的滑鼠鍵盤 | 個人時間與設備；依職務發明條款認定 |
-| [05](projects/05-legacy-toolchain-modernization.md) | **Legacy 建置鏈現代化** | TypeScript · C++ · DAP | 20 年前的專案，接上今天的 IDE 與 AI | 職務中開發，著作權屬雇主 |
-| [06](projects/06-ai-enablement.md) | **團隊 AI 能力養成** | — | 帶零基礎團隊從 0 開始用 AI，通關制而非期程制 | 職務中開發，著作權屬雇主 |
 
 每份文件的結構固定：**解什麼問題 → 架構 → 難題與解法 → 成果 → 面試怎麼講**。
 「難題與解法」是重點，其他章節是為了讓那一節有脈絡。
@@ -82,12 +64,16 @@ jarvis-dashboard         觀測層：有 UI 沒權限（結構上無法旁路）
 
 | 路徑 | 內容 |
 |---|---|
-| [`projects/`](projects/) | 專案卷 7 篇，每篇「解什麼問題 → 架構 → 難題與解法 → 成果 → 面試怎麼講」 |
+| [`projects/`](projects/) | 專案卷 4 篇，每篇「解什麼問題 → 架構 → 難題與解法 → 成果 → 面試怎麼講」 |
 | [`web/`](web/) | 線上履歷的**來源檔**與發布流程（`index.html` 是唯一來源，不從網頁反推） |
 
 ---
 
 ## 這個 repo 沒有放的東西
+
+**編號 03、05、06 的專案卷**暫不公開。那三篇的需求來自職務現場，
+著作權歸屬與保密範圍是兩個不同的問題，後者尚未確認完畢——
+在確認之前不放出來，是刻意的，不是遺漏。
 
 **知識卷**（12 篇技術知識點的學習版）與**面試素材**（電梯簡報、問答庫）不在這裡，
 它們住在個人知識庫的 `personal/learning/` 下。

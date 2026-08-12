@@ -20,3 +20,10 @@ Desktop.ini
 
 # 工具產生的預覽副本（內容與 Vault 的 portfolio-knowledge/_site 相同，不進作品集 repo）
 .preview/
+
+# 職務相關專案卷 — 保密範圍未裁決前暫留私有側（C-1）
+# 著作權歸屬 08-10 已逐項標註完，但「保密義務涵蓋到哪」尚未判斷過。
+# 檔案仍在本機，確認無虞後移除此段即可加回。
+projects/03-window-computer-use.md
+projects/05-legacy-toolchain-modernization.md
+projects/06-ai-enablement.md

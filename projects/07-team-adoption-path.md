@@ -101,4 +101,3 @@
 
 - [01 AI Memory Vault](01-ai-memory-vault.md) — 知識層與分區設計
 - [04 Jarvis Core / Dashboard](04-jarvis-core-and-dashboard.md) — 契約驅動與多消費端的實證
-- [06 團隊 AI 能力養成](06-ai-enablement.md) — 導入的阻力不在技術
