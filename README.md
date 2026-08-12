@@ -32,7 +32,7 @@ jarvis-dashboard         觀測層：有 UI 沒權限（結構上無法旁路）
 
 | # | 專案 | 技術棧 | 一句話 |
 |---|---|---|---|
-| [01](projects/01-ai-memory-vault.md) | **AI Memory Vault** | Python · ChromaDB · MCP · PyInstaller | 個人知識庫的 RAG 後端，25 個 MCP 工具，四種部署形態 |
+| [01](projects/01-ai-memory-vault.md) | **AI Memory Vault** | Python · ChromaDB · MCP · PyInstaller | 個人知識庫的 RAG 後端，29 個 MCP 工具，四種部署形態 |
 | [02](projects/02-remote-ai-task-platform.md) | **Remote AI Task Platform** | Python · SQLite · Discord | 讓 AI CLI 以低權限帳號在背景安全執行任務 |
 | [04](projects/04-jarvis-core-and-dashboard.md) | **Jarvis Core / Dashboard** | Python · TypeScript · JSON Schema | 契約驅動的薄核心 + 零建置觀測面板 |
 
