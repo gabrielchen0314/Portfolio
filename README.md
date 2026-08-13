@@ -26,6 +26,35 @@ jarvis-dashboard         觀測層：有 UI 沒權限（結構上無法旁路）
 
 ---
 
+## 可以自己跑的一個
+
+下面的專案卷是**敘述**——讀者只能選擇相信或不相信。所以另外開了一個小 repo，
+把其中一塊做成**可以 clone、五分鐘跑完、看得到數字**的東西：
+
+### 🔬 [hybrid-retrieval-demo](https://github.com/gabrielchen0314/hybrid-retrieval-demo)
+
+BM25 與向量檢索的加權 RRF 融合、有界時間衰減重排，以及一個超出預算時
+**會發出聲音而不是靜默截斷**的注入預算契約。語料全部合成，零私人內容。
+
+| | recall@5 | MRR@10 |
+|---|---|---|
+| 單模式基準（取較好者） | 0.800 | 0.615 |
+| **hybrid** | **0.867** | **0.638** |
+
+它要證明的不是「我會寫 RAG」，是**每個參數都是量出來的**：360 格參數網格全掃、
+149 格勝出、選定組態由 `sweep.json` 回推，而不是手寫在 README 上。
+另有 12 道機器閘門，包含一條**突變驗證**（把產生指標的邏輯拿掉，斷言必須變紅）。
+
+```bash
+git clone https://github.com/gabrielchen0314/hybrid-retrieval-demo
+pip install -r requirements.txt && python scripts/eval.py
+```
+
+從乾淨 clone 跑出來的 `results.json` 與上表**逐位元相同**——這是刻意設計的：
+評估時點是版控裡的固定日期，程式中禁用牆上時鐘，由靜態掃描擋。
+
+---
+
 ## 專案卷
 
 ### 自主發起（以個人時間與設備開發）
