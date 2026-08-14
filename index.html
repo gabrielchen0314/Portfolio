@@ -290,7 +290,7 @@ footer.page b{color:var(--ink); font-weight:600;}
   </div>
 
   <p class="thesis fade">在 <em>legacy 環境</em>裡做 <em>AI 系統工程</em>。</p>
-  <p class="intro fade">白天維護二十年歷史的 MMORPG 產品線——伺服器是 Delphi，客戶端是 C++ 與 UE2，手遊那條是 Unity＋Lua；BIG5 編碼，VS2003 建置鏈。晚上獨立設計交付一組 AI 工程系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，以及一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少</strong>——而多數企業真正要導入 AI 的地方，正好就是那些不能重寫的舊系統。</p>
+  <p class="intro fade">白天維護二十年歷史的 MMORPG 端遊。伺服器是 Delphi，客戶端是 C++ 跟 UE2，原始碼還是 BIG5 編碼，建置鏈停在 VS2003。另外還有一條 Unity 加 Lua 的手遊。晚上用自己的時間交付了一組 AI 系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，還有一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少。</strong>而多數企業真正需要導入 AI 的地方，剛好就是那些不能重寫的舊系統。</p>
 
   <div class="readout fade">
     <div class="cell"><span class="k">最大專案的測試數</span><span class="v"><!--m:ai_memory_vault.tests_passed-->2,651<!--/m--><small>／<!--m:ai_memory_vault.version-->v4.4.0<!--/m--></small></span></div>
@@ -358,7 +358,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">系統設計 · 以個人時間開發</p>
   <h2>四個系統，用 JSON Schema 契約掛在一起</h2>
-  <p class="sub"><strong>這組系統由我獨力開發，但機制全部照團隊規格。</strong>契約邊界、code review、五段稽核鏈、機器強制的閘門——它們存在的理由都是同一句話：<strong>不要依賴任何人記得</strong>。這是我在職務上的工作標準，不會因為某個專案只有我一個人寫就放掉。所以核心「不長業務邏輯」不是寫在文件裡的原則，是 LOC 上限、import 規則與禁止呼叫 LLM 的建置失敗。<br>也因為是契約驅動，<strong>從個人擴展到團隊共用不是重寫，是新增一個消費端</strong>——這點已經在三個消費端上驗證過，其中一個刻意用異語言實作。</p>
+  <p class="sub"><strong>這組系統由我一個人開發，但機制全部照團隊規格。</strong>契約邊界、code review、五段稽核鏈、機器強制的閘門，它們存在的理由都是同一句話：不要依賴任何人記得。這是我在職務上的工作標準，不會因為某個專案只有我一個人寫就放掉。所以核心「不長業務邏輯」不是寫在文件裡的原則，是 LOC 上限、import 規則跟禁止呼叫 LLM 的建置失敗。<br>也因為是契約驅動，<strong>從個人擴展到團隊共用不用重寫，只要多接一個消費端</strong>。這點已經在三個消費端上驗證過了，其中一個我刻意用不同語言實作。</p>
   <div class="stack"><b>AI Memory Vault</b>     知識層 —— 知識庫的 RAG 檢索與 MCP 工具面，AI 進場時自動取得脈絡
        <i>│</i>
        <i>│ 契約：JSON Schema 檔案介面。生產者不認識任何消費端，</i>
@@ -440,7 +440,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">為工作場景開發</p>
   <h2>需求來自職務現場的三套系統</h2>
-  <p class="sub">這三項的共同點是<strong>需求不是我想出來的，是工作現場長出來的</strong>。歸屬各不相同，逐項標註。技術內容已去識別化：不含產品代號、內部系統、工單與機器路徑。</p>
+  <p class="sub">這三項的共同點是<strong>需求不是我想出來的，是工作現場長出來的</strong>。歸屬各不相同，逐項標註。技術內容已經去識別化，不含產品代號、內部系統、工單與機器路徑。</p>
 
   <div class="rows">
     <article class="row">
@@ -511,7 +511,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">不是 side project</p>
   <h2>這些系統每天在真實的工作流程裡跑</h2>
-  <p class="sub">主要是 <strong>AI Memory Vault</strong>（自 2026-04 起）與<strong>任務執行平台</strong>：它們不是 demo，是每天實際在用的工具。也正因為使用場景會接觸到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>——下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
+  <p class="sub">主要是 AI Memory Vault（自 2026-04 起）跟任務執行平台。它們不是 demo，是我每天實際在用的工具。也因為使用場景會碰到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>。下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
 
   <div class="skills" style="margin-bottom:26px;">
     <div class="skill lead">
@@ -536,7 +536,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">AI Memory Vault · 帶進團隊需要什麼</p>
   <h2>把 AI Memory Vault 帶進團隊，缺的不是重寫，是三件事</h2>
-  <p class="sub">上面那個 <strong>RAG 知識庫</strong>目前是個人在用的，但它的形狀從第一天就是多方協作的——契約驅動、多消費端、依所有權分區。所以「擴展成團隊共用」不是重新設計，而是補上三個單人環境用不到的東西。<strong>這三件我都已經踩過相鄰的問題</strong>，不是紙上推演。</p>
+  <p class="sub">上面那個 RAG 知識庫目前是個人在用的，但它的形狀從第一天就是多方協作的：契約驅動、多消費端、依所有權分區。所以擴展成團隊共用不用重新設計，只要補上三個單人環境用不到的東西。<strong>這三件我都已經踩過相鄰的問題</strong>，不是紙上推演。</p>
 
   <div class="rows">
     <article class="row">
@@ -603,7 +603,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">知識體系</p>
   <h2>十二個知識點，每一個都能在白板前講給別人聽</h2>
-  <p class="sub">上面每一個難題，我都往上抽了一層寫成可複用的知識點——因為<strong>認出「同一個錯的形狀」比記住個案有用得多</strong>。我在三個完全不同的場景認出過同一個錯：稽核遮蔽只遮了一個入口、視窗框架過濾只涵蓋一種提供者、同樣的漏洞又在另一個渲染引擎上重演。<br>每份的結構固定：一句話 → 為什麼需要它 → 心智模型 → 機制 → 實際案例。<span style="color:var(--accent)">◆</span> 是其中最核心的四個。</p>
+  <p class="sub">上面每一個難題，我都往上抽了一層寫成可複用的知識點。因為<strong>認出「同一個錯的形狀」比記住個案有用得多</strong>。我在三個完全不同的場景認出過同一個錯：稽核遮蔽只遮了一個入口、視窗框架過濾只涵蓋一種提供者、同樣的漏洞又在另一個渲染引擎上重演。<br>每份的結構固定：一句話 → 為什麼需要它 → 心智模型 → 機制 → 實際案例。<span style="color:var(--accent)">◆</span> 是其中最核心的四個。</p>
   <div class="kgrid">
     <div class="kcard star"><h4><span class="s">◆</span>混合檢索</h4><p>向量會把專有名詞「理解」掉，BM25 對不上使用者的描述。加權合併再依時間重排。</p></div>
     <div class="kcard star"><h4><span class="s">◆</span>MCP 與工具面設計</h4><p>難的不是協定，是工具怎麼切。判準是使用頻率，不是概念相似度。</p></div>
