@@ -1,0 +1,56 @@
+{
+  "_comment": [
+    "作品集所有數字的單一真實來源。任何顯示面（index.html、projects/*.md、104 填寫單）",
+    "都從這裡取，不各自手寫——手寫的那一刻起，兩份就開始分岔而沒有東西會叫。",
+    "改這裡之後跑：python scripts/apply_metrics.py       （寫回各顯示面）",
+    "驗證有沒有漏改：  python scripts/apply_metrics.py --check（CI 用，不一致即非 0）",
+    "每一項都必須帶 measured_on 與 how——沒有量測方式的數字，過幾天就沒有人能重現它。"
+  ],
+
+  "ai_memory_vault": {
+    "tests_passed":    { "value": 2650, "measured_on": "2026-08-13", "how": "AI_Engine 下 pytest -q 全套實跑" },
+    "tests_skipped":   { "value": 13,   "measured_on": "2026-08-13", "how": "同上" },
+    "tests_collected": { "value": 2663, "measured_on": "2026-08-13", "how": "passed + skipped + failed" },
+    "version":         { "value": "v4.4.0", "measured_on": "2026-08-13", "how": "發布版號" },
+    "mcp_tools_exposed":  { "value": 25, "measured_on": "2026-08-08", "how": "預設曝露數（另有 4 個管理工具預設關閉）" },
+    "mcp_tools_implemented": { "value": 29, "measured_on": "2026-08-08", "how": "實作總數" },
+    "recall_at_5_current": { "value": 0.690, "measured_on": "2026-08-08", "how": "42 題固定查詢集，真實語料現行 baseline（閘門下限 0.60）" },
+    "recall_at_5_ab_before": { "value": 0.643, "measured_on": "2026-07-05", "how": "Contextual Retrieval A/B 的對照組" },
+    "recall_at_5_ab_after":  { "value": 0.810, "measured_on": "2026-07-05", "how": "同語料同題庫，唯一變數是脈絡化開關（+26%）" },
+    "installer_mb":    { "value": 125.9, "measured_on": "2026-08-09", "how": "v4.2.4 安裝檔大小" }
+  },
+
+  "remote_ai_task_platform": {
+    "tests_passed": { "value": 528, "measured_on": "2026-08-08", "how": "Phase 1B 完成時實跑" }
+  },
+
+  "jarvis": {
+    "core_tests":     { "value": 142, "measured_on": "2026-08-08", "how": "jarvis-core 測試數" },
+    "dashboard_tests":{ "value": 87,  "measured_on": "2026-08-08", "how": "jarvis-dashboard 測試數" },
+    "real_samples":   { "value": 963, "measured_on": "2026-08-08", "how": "真實資料驗證契約，0 則不合" },
+    "kernel_loc":     { "value": 1002, "measured_on": "2026-08-08", "how": "薄核心實際行數" },
+    "kernel_loc_limit": { "value": 1500, "measured_on": "2026-08-08", "how": "超過即建置失敗的機器強制上限" }
+  },
+
+  "window_computer_use": {
+    "loc":   { "value": 10300, "measured_on": "2026-08-08", "how": "C# .NET 8 實作行數（約值）" },
+    "tools": { "value": 14, "measured_on": "2026-08-08", "how": "MCP 工具數" }
+  },
+
+  "hybrid_retrieval_demo": {
+    "hybrid_recall_at_5": { "value": 0.867, "measured_on": "2026-08-13", "how": "results.json，minilm 後端、EVAL_NOW 2026-08-13" },
+    "hybrid_mrr_at_10":   { "value": 0.638, "measured_on": "2026-08-13", "how": "同上" },
+    "baseline_recall_at_5": { "value": 0.800, "measured_on": "2026-08-13", "how": "兩個單模式取較好者" },
+    "baseline_mrr_at_10":   { "value": 0.615, "measured_on": "2026-08-13", "how": "同上" },
+    "sweep_cells":   { "value": 360, "measured_on": "2026-08-13", "how": "參數網格總格數" },
+    "sweep_winners": { "value": 149, "measured_on": "2026-08-13", "how": "同時贏過兩個單模式的格數" },
+    "gates": { "value": 12, "measured_on": "2026-08-13", "how": "機器判定的閘門數，CI 全過" }
+  },
+
+  "career": {
+    "total_experience": { "value": "6 年 3 個月", "measured_on": "2026-08-13", "how": "2019-12 起，扣除中間 5 個月空窗" },
+    "game_industry":    { "value": "5 年 9 個月", "measured_on": "2026-08-13", "how": "2020-11 起" },
+    "public_scrolls":   { "value": 4, "measured_on": "2026-08-12", "how": "公開的專案卷數（01/02/04/07）" },
+    "private_scrolls":  { "value": 3, "measured_on": "2026-08-12", "how": "保密範圍未裁決而暫留私有（03/05/06）" }
+  }
+}

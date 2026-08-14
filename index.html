@@ -293,10 +293,10 @@ footer.page b{color:var(--ink); font-weight:600;}
   <p class="intro fade">白天維護二十年歷史的 MMORPG 產品線——伺服器是 Delphi，客戶端是 C++ 與 UE2，手遊那條是 Unity＋Lua；BIG5 編碼，VS2003 建置鏈。晚上獨立設計交付一組 AI 工程系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，以及一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少</strong>——而多數企業真正要導入 AI 的地方，正好就是那些不能重寫的舊系統。</p>
 
   <div class="readout fade">
-    <div class="cell"><span class="k">最大專案的測試數</span><span class="v">2,601<small>／v4.3.0</small></span></div>
+    <div class="cell"><span class="k">最大專案的測試數</span><span class="v"><!--m:ai_memory_vault.tests_passed-->2,650<!--/m--><small>／<!--m:ai_memory_vault.version-->v4.4.0<!--/m--></small></span></div>
     <div class="cell"><span class="k">用真實資料驗證契約</span><span class="v">963<small>／0 則不合</small></span></div>
     <div class="cell"><span class="k">薄核心的行數上限</span><span class="v">1,002<small>／1,500 建置失敗</small></span></div>
-    <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v">25<small>／協定層自己實作</small></span></div>
+    <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v"><!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--><small>／協定層自己實作</small></span></div>
   </div>
   <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">四個數字各自對應一個設計決定，下面各節會展開。都是當時實際跑出來的值。</p>
 </header>
@@ -390,7 +390,7 @@ footer.page b{color:var(--ink); font-weight:600;}
           <span class="chip">升級凍結</span>
         </div>
       </div>
-      <div class="metric"><b>2,601</b>tests · v4.3.0</div>
+      <div class="metric"><b><!--m:ai_memory_vault.tests_passed-->2,650<!--/m--></b>tests · <!--m:ai_memory_vault.version-->v4.4.0<!--/m--></div>
     </article>
 
     <article class="row">
@@ -410,7 +410,7 @@ footer.page b{color:var(--ink); font-weight:600;}
           <span class="chip">守衛條件過窄，推翻自己的論證</span>
         </div>
       </div>
-      <div class="metric"><b>528</b>tests · Phase 1B</div>
+      <div class="metric"><b><!--m:remote_ai_task_platform.tests_passed-->528<!--/m--></b>tests · Phase 1B</div>
     </article>
 
     <article class="row">
@@ -461,7 +461,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         </div>
         <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 以個人時間與設備開發；歸屬依勞動契約之職務發明條款認定</p>
       </div>
-      <div class="metric"><b>10,300</b>LOC · 14 tools</div>
+      <div class="metric"><b><!--m:window_computer_use.loc-->10,300<!--/m--></b>LOC · 14 tools</div>
     </article>
 
     <article class="row">

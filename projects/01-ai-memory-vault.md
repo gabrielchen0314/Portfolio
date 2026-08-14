@@ -2,7 +2,7 @@
 
 > **把個人知識庫變成 AI 的長期記憶。**
 > Python · ChromaDB · LangChain · FastMCP · PyInstaller · Inno Setup · Tauri
-> 2026-04 起，進行中｜2,601 tests｜25 個 MCP 工具｜v4.3.0
+> 2026-04 起，進行中｜<!--m:ai_memory_vault.tests_passed-->2,650<!--/m--> tests｜<!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--> 個 MCP 工具｜<!--m:ai_memory_vault.version-->v4.4.0<!--/m-->
 
 ---
 
@@ -251,7 +251,7 @@ assert _registered_ids() - handler_ids == set()
 
 | 指標 | 數值 | 量測日 |
 |---|---|---|
-| 測試 | 2,601 passed（15 skipped，2,616 collected） | 2026-08-12 |
+| 測試 | <!--m:ai_memory_vault.tests_passed-->2,650<!--/m--> passed（<!--m:ai_memory_vault.tests_skipped-->13<!--/m--> skipped，<!--m:ai_memory_vault.tests_collected-->2,663<!--/m--> collected） | 2026-08-13 |
 | MCP 工具 | 25（+4 個管理工具，預設關閉） | 2026-08-08 |
 | 檢索品質（現行 baseline） | recall@5 = 0.690（回歸閘門下限 0.60） | 2026-08-08 |
 | 脈絡化前綴的 A/B 改進 | recall@5 0.643 → 0.810（+26%），同語料同題庫 | 2026-07-05 |
