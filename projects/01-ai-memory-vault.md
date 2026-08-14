@@ -251,7 +251,7 @@ assert _registered_ids() - handler_ids == set()
 
 | 指標 | 數值 | 量測日 |
 |---|---|---|
-| 測試 | <!--m:ai_memory_vault.tests_passed-->2,651<!--/m--> passed（<!--m:ai_memory_vault.tests_skipped-->12<!--/m--> skipped，<!--m:ai_memory_vault.tests_collected-->2,663<!--/m--> collected） | 2026-08-13 |
+| 測試 | <!--m:ai_memory_vault.tests_passed-->2,651<!--/m--> passed（<!--m:ai_memory_vault.tests_skipped-->12<!--/m--> skipped，<!--m:ai_memory_vault.tests_collected-->2,663<!--/m--> collected） | 2026-08-14 |
 | MCP 工具 | 25（+4 個管理工具，預設關閉） | 2026-08-08 |
 | 檢索品質（現行 baseline） | recall@5 = 0.690（回歸閘門下限 0.60） | 2026-08-08 |
 | 脈絡化前綴的 A/B 改進 | recall@5 0.643 → 0.810（+26%），同語料同題庫 | 2026-07-05 |

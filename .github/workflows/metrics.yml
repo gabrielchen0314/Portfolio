@@ -1,0 +1,27 @@
+name: metrics
+
+# 擋的是「數字在某個顯示面被手改、或改了來源卻沒同步」。
+# 這個 repo 的第一句話是「這裡放的不是履歷，是證據」——
+# 而 2026-08-14 實際發生過：同一個測試數在三個地方各不相同，三個都不是實跑值。
+# 一條寫在文件裡的規則等於沒有規則，所以它在這裡。
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: 數字與 data/metrics.json 一致
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      # 沒有第三方相依，標準函式庫就夠——這是刻意的，
+      # 一個為了驗數字而需要 pip install 的閘門，遲早會因為安裝失敗被關掉。
+      - name: 驗證顯示面數字未漂移
+        run: python scripts/apply_metrics.py --check

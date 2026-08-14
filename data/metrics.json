@@ -9,17 +9,17 @@
   "ai_memory_vault": {
     "tests_passed": {
       "value": 2651,
-      "measured_on": "2026-08-13",
+      "measured_on": "2026-08-14",
       "how": "AI_Engine 下 pytest -q 全套實跑，7m31s，exit 0"
     },
     "tests_skipped": {
       "value": 12,
-      "measured_on": "2026-08-13",
+      "measured_on": "2026-08-14",
       "how": "同一次實跑"
     },
     "tests_collected": {
       "value": 2663,
-      "measured_on": "2026-08-13",
+      "measured_on": "2026-08-14",
       "how": "passed 2651 + skipped 12，同一次實跑"
     },
     "version": {
@@ -144,12 +144,12 @@
   "career": {
     "total_experience": {
       "value": "6 年 3 個月",
-      "measured_on": "2026-08-13",
+      "measured_on": "2026-08-14",
       "how": "2019-12 起，扣除中間 5 個月空窗"
     },
     "game_industry": {
       "value": "5 年 9 個月",
-      "measured_on": "2026-08-13",
+      "measured_on": "2026-08-14",
       "how": "2020-11 起"
     },
     "public_scrolls": {
