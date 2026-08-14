@@ -11,7 +11,7 @@
 
 | # | 專案 | 期間 | 技術棧 | 規模 |
 |---|---|---|---|---|
-| [01](01-ai-memory-vault.md) | AI Memory Vault | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | <!--m:ai_memory_vault.tests_passed-->2,650<!--/m--> tests · <!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--> MCP tools · <!--m:ai_memory_vault.version-->v4.4.0<!--/m--> |
+| [01](01-ai-memory-vault.md) | AI Memory Vault | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | <!--m:ai_memory_vault.tests_passed-->2,651<!--/m--> tests · <!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--> MCP tools · <!--m:ai_memory_vault.version-->v4.4.0<!--/m--> |
 | [02](02-remote-ai-task-platform.md) | Remote AI Task Platform | 2026-07 ~ 進行中 | Python · SQLite(WAL) · Discord.py · Windows API | <!--m:remote_ai_task_platform.tests_passed-->528<!--/m--> tests · Phase 1B 完成 |
 | [04](04-jarvis-core-and-dashboard.md) | Jarvis Core / Dashboard | 2026-07 ~ 維持 | Python · TypeScript(Node 原生) · JSON Schema | 142 + 87 tests · kernel ≤1500 LOC |
 | [07](07-team-adoption-path.md) | AI Memory Vault 帶進團隊的落地路徑 | — | 設計推導 | 三個缺口 · 三個風險 |
