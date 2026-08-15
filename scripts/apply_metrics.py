@@ -37,7 +37,10 @@ METRICS_PATH: Path = REPO_ROOT / "data" / "metrics.json"
 DISPLAY_FILES: tuple = ( "index.html", "README.md", "projects/README.md",
                          "projects/01-ai-memory-vault.md",
                          "projects/02-remote-ai-task-platform.md",
+                         "projects/03-window-computer-use.md",
                          "projects/04-jarvis-core-and-dashboard.md",
+                         "projects/05-legacy-toolchain-modernization.md",
+                         "projects/06-ai-enablement.md",
                          "projects/07-team-adoption-path.md" )
 
 MARK_PATTERN: re.Pattern = re.compile( r"<!--m:([a-z0-9_.]+)-->(.*?)<!--/m-->", re.S )

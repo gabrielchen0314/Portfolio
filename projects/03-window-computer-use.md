@@ -2,7 +2,7 @@
 
 > **鎖定單一視窗的 Computer Use MCP Server，完全不碰你的實體滑鼠鍵盤。**
 > C# · .NET 8 (`net8.0-windows10.0.22621.0`) · UI Automation · Windows Graphics Capture · MCP stdio
-> 2026-07 起｜約 10,300 行 C#｜14 個 MCP 工具｜單檔 self-contained exe
+> 2026-07 起｜約 <!--m:window_computer_use.loc-->10,300<!--/m--> 行 C#｜<!--m:window_computer_use.tools-->14<!--/m--> 個 MCP 工具｜單檔 self-contained exe
 
 > ⚖️ 歸屬：以個人時間與設備開發，需求來自團隊實務場景。
 > 著作權歸屬依勞動契約之職務發明條款認定。
@@ -245,7 +245,7 @@ PolicyGate 從未拒絕以本工具自身為目標。如果本工具的 exe 被�
 |---|---|
 | 架構規劃書 | 多模型辯論 2 輪收斂 + 同儕審查 4 輪 APPROVED |
 | Phase 0 探針 | 11 條驗收，10 條實跑通過。第 6 條環境不具備，明碼標記未驗證 |
-| Phase 1 (A 類 MVP) | 十項驗收全過，約 10,300 行 C# |
+| Phase 1 (A 類 MVP) | 十項驗收全過，約 <!--m:window_computer_use.loc-->10,300<!--/m--> 行 C# |
 | 打包 | 單檔 self-contained exe，目標機不需裝 .NET |
 | 第一個真實目標 | Delphi VCL 應用，17 個元素正確標號、座標對齊 |
 | Phase 4 可信確認通道 | 四項自動驗證全過 + 人工路徑實跑（15.6 秒） |

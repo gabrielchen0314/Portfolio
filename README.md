@@ -104,7 +104,7 @@ pip install -r requirements.txt && python scripts/eval.py
 
 | 路徑 | 內容 |
 |---|---|
-| [`projects/`](projects/) | 專案卷 7 篇，每篇「解什麼問題 → 架構 → 難題與解法 → 成果」 |
+| [`projects/`](projects/) | 專案卷 <!--m:career.public_scrolls-->7<!--/m--> 篇，每篇「解什麼問題 → 架構 → 難題與解法 → 成果」 |
 | [`index.html`](index.html) | 線上履歷的來源檔，發布於 <https://gabrielchen0314.github.io/Portfolio/> |
 | [`PUBLISHING.md`](PUBLISHING.md) | 發布方式與「唯一來源」原則 |
 
