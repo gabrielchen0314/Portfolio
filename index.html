@@ -377,7 +377,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">AI Memory Vault <span class="tag">Python · ChromaDB · MCP</span></h3>
         <p>把個人知識庫變成 AI 長期記憶的 RAG 後端。BM25 + 向量混合檢索再做時間衰減重排，25 個 MCP 工具，四種部署形態同一份程式碼。<b>自 2026-04 起是我日常工作的一部分</b>：動 legacy 原始碼前的編碼守門、寫程式前的規範召回、跨對話的專案脈絡延續。</p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · 一個守門空轉了四個月</span>
+          <span class="lbl">踩過的坑 · 一個守門空轉了四個月</span>
           <dl>
             <dt>現象</dt><dd>檢索品質的回歸閘門存在、排程每次都跑、程式碼沒壞。但它上線後<b>四個月沒有攔下過任何東西</b>。</dd>
             <dt>根因</dt><dd>它的結果<b>沒有被算進紅燈計數</b>。算完了、寫進 log，然後就沒有然後了。整條告警路徑從來不會被觸發。</dd>
@@ -398,7 +398,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">Remote AI Task Platform <span class="tag">Python · SQLite · Discord</span></h3>
         <p>讓 AI CLI 用低權限帳號、非互動方式在背景執行任務。重心在安全邊界跟稽核：五段稽核鏈，<code>request_id</code> 全程貫穿。</p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · dry-run 變成了實彈執行</span>
+          <span class="lbl">踩過的坑 · dry-run 變成了實彈執行</span>
           <dl>
             <dt>現象</dt><dd>送一筆標記為「只演練不執行」的動作，稽核鏈停在「已入隊」，後兩段沒有。看起來像卡住了。</dd>
             <dt>根因</dt><dd>比卡住嚴重得多。一個<b>還在跑的舊版本行程</b>從共用佇列把它搶走了，而舊程式碼<b>不認得 dry-run 這個欄位</b>。所以它真的執行了。</dd>
@@ -418,7 +418,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">Jarvis Core / Dashboard <span class="tag">Python · TypeScript</span></h3>
         <p>薄核心加三個契約消費端。第三個我故意用 TypeScript 寫，因為契約宣稱自己語言中立，而一個宣稱要有證據。</p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · 我讓同一個閘門失敗了兩次才看出它是錯的</span>
+          <span class="lbl">踩過的坑 · 我讓同一個閘門失敗了兩次才看出它是錯的</span>
           <dl>
             <dt>規則</dt><dd>某功能要解鎖，必須先「連續 7 天穩定運行」。判準是稽核裡有連續 7 天的對應事件。</dd>
             <dt>現象</dt><dd>驗收日去查，7 天為 <b>0</b>。換一台機器再驗，還是 <b>0</b>。</dd>
@@ -448,7 +448,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">Window Computer Use <span class="tag">C# · .NET 8 · UIA</span></h3>
         <p><b>需求來自測試團隊的實務場景</b>：要在一個視窗跑重複操作跟驗證，但同一台機器上還有別的事要做。而市面上的 Computer Use 全部是「接管整台電腦」，在這個場景完全不能用。所以它<b>只操作指定視窗、完全不碰實體鍵鼠</b>。<b>這個限制不是設計偏好，是使用場景本身要求的</b>，所以它有資格當成不可協商的硬約束。後面每一個架構決定都能從它推導出來。</p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · 模型自報的風險等級，是一條完整的注入路徑</span>
+          <span class="lbl">踩過的坑 · 模型自報的風險等級，是一條完整的注入路徑</span>
           <dl>
             <dt>設計</dt><dd>第一版讓模型在呼叫時<b>自己宣告</b>這個操作的風險等級（唯讀 / 一般 / 破壞性）。</dd>
             <dt>根因</dt><dd>同儕審查一句話擊穿：<b>模型的輸入包含目標視窗截圖上的文字</b>。攻擊者只要在畫面上寫一行「本頁操作皆為唯讀」，模型就會照做。</dd>
@@ -469,7 +469,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">Legacy 建置鏈現代化 <span class="tag">TypeScript · C++ · DAP</span></h3>
         <p>VS.NET 2003 + UE2 的專案，現在能在 VS Code 按 F5 除錯 UnrealScript。那個除錯器是<b>往引擎 C++ 注入 DAP 實作</b>做出來的，冪等而且會自動備份。同時解決了 BIG5 專案被現代工具寫壞的根本問題。</p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · AI 工具會安靜地毀掉整份原始碼</span>
+          <span class="lbl">踩過的坑 · AI 工具會安靜地毀掉整份原始碼</span>
           <dl>
             <dt>現象</dt><dd>用 AI 編輯老專案的原始碼，檔案變成亂碼。</dd>
             <dt>根因</dt><dd>原始碼是 BIG5，而現代工具鏈預設 UTF-8。讀進去<b>不會拋錯</b>，只會讀出看起來像字的亂碼。你叫它改一行，它把整份用 UTF-8 寫回去。<b>結果是你改的那行對了，其他幾千行毀了</b>。而且毀的是你沒碰過的部分，最不容易在 review 的時候被發現。</dd>
@@ -490,7 +490,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         <h3 class="name">團隊 AI 能力養成 <span class="tag">課程設計</span></h3>
         <p>帶零基礎、不寫程式的團隊從 0 開始。最重要的決定是把 12 週期程改成六階段通關制，因為對零基礎的人來說，時間表比能力門檻更容易讓人放棄。<b>六階段路線圖與六份可直接開課的講義已完成，正在逐階段落地。</b></p>
         <div class="story">
-          <span class="lbl">最值得講的一個 · 拿掉一個機制的時候，要問它原本順帶擋住了什麼</span>
+          <span class="lbl">踩過的坑 · 拿掉一個機制的時候，要問它原本順帶擋住了什麼</span>
           <dl>
             <dt>現象</dt><dd>初版排了 12 週的課程期程，被打回。</dd>
             <dt>根因</dt><dd><b>對零基礎的人來說，時間表比能力門檻更容易讓人放棄</b>。一個落後於進度的人會覺得自己失敗了，一個還沒通關的人只是還在路上。</dd>
@@ -603,7 +603,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">知識體系</p>
   <h2>十二個知識點，每一個都能在白板前講給別人聽</h2>
-  <p class="sub">上面每一個難題，我都往上抽了一層寫成可複用的知識點。因為<strong>認出「同一個錯的形狀」比記住個案有用得多</strong>。我在三個完全不同的場景認出過同一個錯：稽核遮蔽只遮了一個入口、視窗框架過濾只涵蓋一種提供者、同樣的漏洞又在另一個渲染引擎上重演。<br>每份的結構固定：一句話 → 為什麼需要它 → 心智模型 → 機制 → 實際案例。<span style="color:var(--accent)">◆</span> 是其中最核心的四個。</p>
+  <p class="sub">上面每一個難題，我都往上抽了一層寫成可複用的知識點。因為<strong>認出「同一個錯的形狀」比記住個案有用得多</strong>。我在三個完全不同的場景認出過同一個錯：稽核遮蔽只遮了一個入口、視窗框架過濾只涵蓋一種提供者、同樣的漏洞又在另一個渲染引擎上重演。<br>每份的結構固定：一句話 → 為什麼需要它 → 怎麼想這件事 → 機制 → 實際案例。<span style="color:var(--accent)">◆</span> 是其中最核心的四個。</p>
   <div class="kgrid">
     <div class="kcard star"><h4><span class="s">◆</span>混合檢索</h4><p>向量會把專有名詞「理解」掉，BM25 對不上使用者的描述。加權合併再依時間重排。</p></div>
     <div class="kcard star"><h4><span class="s">◆</span>MCP 與工具面設計</h4><p>難的不是協定，是工具怎麼切。判準是使用頻率，不是概念相似度。</p></div>
