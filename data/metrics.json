@@ -8,24 +8,24 @@
   ],
   "ai_memory_vault": {
     "tests_passed": {
-      "value": 2651,
-      "measured_on": "2026-08-14",
-      "how": "AI_Engine 下 pytest -q 全套實跑，7m31s，exit 0"
+      "value": 3987,
+      "measured_on": "2026-10-22",
+      "how": "origin/main 562fcd3 的 AI_Engine 下 pytest -q 全套實跑，1h04m，exit 1：另有 4 failed + 3 errors（皆為 R4 遷移測試，PermissionError winerror=5，於暫存目錄的 worktree 執行，根因未查）"
     },
     "tests_skipped": {
-      "value": 12,
-      "measured_on": "2026-08-14",
+      "value": 73,
+      "measured_on": "2026-10-22",
       "how": "同一次實跑"
     },
     "tests_collected": {
-      "value": 2663,
-      "measured_on": "2026-08-14",
-      "how": "passed 2651 + skipped 12，同一次實跑"
+      "value": 4067,
+      "measured_on": "2026-10-22",
+      "how": "passed 3987 + failed 4 + errors 3 + skipped 73，同一次實跑"
     },
     "version": {
-      "value": "v4.4.0",
-      "measured_on": "2026-08-13",
-      "how": "發布版號"
+      "value": "v5.2.1",
+      "measured_on": "2026-10-22",
+      "how": "origin/main 562fcd3 的 AI_Engine/pyproject.toml 版號（受測的那一版）"
     },
     "mcp_tools_exposed": {
       "value": 25,
