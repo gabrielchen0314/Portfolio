@@ -293,10 +293,10 @@ footer.page b{color:var(--ink); font-weight:600;}
   <p class="intro fade">白天維護二十年歷史的 MMORPG 端遊。伺服器是 Delphi，客戶端是 C++ 跟 UE2，原始碼還是 BIG5 編碼，建置鏈停在 VS2003。另外還有一條 Unity 加 Lua 的手遊。晚上用自己的時間交付了一組 AI 系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，還有一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少。</strong>而多數企業真正需要導入 AI 的地方，剛好就是那些不能重寫的舊系統。</p>
 
   <div class="readout fade">
-    <div class="cell"><span class="k">最大專案的測試數</span><span class="v"><!--m:ai_memory_vault.tests_passed-->3,987<!--/m--><small>／<!--m:ai_memory_vault.version-->v5.2.1<!--/m--></small></span></div>
+    <div class="cell"><span class="k">最大專案的測試數</span><span class="v"><!--m:ai_memory_vault.tests_passed-->3,999<!--/m--><small>／<!--m:ai_memory_vault.version-->v5.2.1<!--/m--></small></span></div>
     <div class="cell"><span class="k">用真實資料驗證契約</span><span class="v">963<small>／0 則不合</small></span></div>
     <div class="cell"><span class="k">薄核心的行數上限</span><span class="v">1,002<small>／1,500 建置失敗</small></span></div>
-    <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v"><!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--><small>／協定層自己實作</small></span></div>
+    <div class="cell"><span class="k">自建的 MCP 工具</span><span class="v"><!--m:ai_memory_vault.mcp_tools_implemented-->21<!--/m--><small>／記憶核心，預設列出 <!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 支</small></span></div>
   </div>
   <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">四個數字各自對應一個設計決定，下面各節會展開。都是當時實際跑出來的值。</p>
 </header>
@@ -359,7 +359,7 @@ footer.page b{color:var(--ink); font-weight:600;}
   <p class="eyebrow">系統設計 · 以個人時間開發</p>
   <h2>四個系統，用 JSON Schema 契約掛在一起</h2>
   <p class="sub"><strong>這組系統由我一個人開發，但機制全部照團隊規格。</strong>契約邊界、code review、五段稽核鏈、機器強制的閘門，它們存在的理由都是同一句話：不要依賴任何人記得。這是我在職務上的工作標準，不會因為某個專案只有我一個人寫就放掉。所以核心「不長業務邏輯」不是寫在文件裡的原則，是 LOC 上限、import 規則跟禁止呼叫 LLM 的建置失敗。<br>也因為是契約驅動，<strong>從個人擴展到團隊共用不用重寫，只要多接一個消費端</strong>。這點已經在三個消費端上驗證過了，其中一個我刻意用不同語言實作。</p>
-  <div class="stack"><b>AI Memory Vault</b>     知識層 —— 知識庫的 RAG 檢索與 MCP 工具面，AI 進場時自動取得脈絡
+  <div class="stack"><b>Espalio</b>     知識層 —— 知識庫的 RAG 檢索與 MCP 工具面，AI 進場時自動取得脈絡
        <i>│</i>
        <i>│ 契約：JSON Schema 檔案介面。生產者不認識任何消費端，</i>
        <i>│ 　　  所以加一個新的消費端不需要動到上游。</i>
@@ -374,8 +374,8 @@ footer.page b{color:var(--ink); font-weight:600;}
   <div class="rows">
     <article class="row">
       <div>
-        <h3 class="name">AI Memory Vault <span class="tag">Python · ChromaDB · MCP</span></h3>
-        <p>把個人知識庫變成 AI 長期記憶的 RAG 後端。BM25 + 向量混合檢索再做時間衰減重排，25 個 MCP 工具，四種部署形態同一份程式碼。<b>自 2026-04 起是我日常工作的一部分</b>：動 legacy 原始碼前的編碼守門、寫程式前的規範召回、跨對話的專案脈絡延續。</p>
+        <h3 class="name">Espalio <span class="tag">Python · ChromaDB · MCP</span></h3>
+        <p>原名 AI Memory Vault。把個人知識庫變成 AI 長期記憶的 RAG 後端。BM25 + 向量以加權 RRF 融合、再乘有界的時間衰減，記憶核心 <!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 支 MCP 工具、五種部署形態同一份程式碼；個人工作流拆成獨立插件，由 Rust 寫的常駐平台統一看護與聚合工具。<b>自 2026-04 起是我日常工作的一部分</b>：動 legacy 原始碼前的編碼守門、寫程式前的規範召回、跨對話的專案脈絡延續。</p>
         <div class="story">
           <span class="lbl">踩過的坑 · 一個守門空轉了四個月</span>
           <dl>
@@ -390,7 +390,7 @@ footer.page b{color:var(--ink); font-weight:600;}
           <span class="chip">升級凍結</span>
         </div>
       </div>
-      <div class="metric"><b><!--m:ai_memory_vault.tests_passed-->3,987<!--/m--></b>tests · <!--m:ai_memory_vault.version-->v5.2.1<!--/m--></div>
+      <div class="metric"><b><!--m:ai_memory_vault.tests_passed-->3,999<!--/m--></b>tests · <!--m:ai_memory_vault.version-->v5.2.1<!--/m--></div>
     </article>
 
     <article class="row">
@@ -410,7 +410,7 @@ footer.page b{color:var(--ink); font-weight:600;}
           <span class="chip">守衛條件過窄，推翻自己的論證</span>
         </div>
       </div>
-      <div class="metric"><b><!--m:remote_ai_task_platform.tests_passed-->528<!--/m--></b>tests · Phase 1B</div>
+      <div class="metric"><b><!--m:remote_ai_task_platform.tests_passed-->721<!--/m--></b>tests · Phase 1B</div>
     </article>
 
     <article class="row">
@@ -461,7 +461,7 @@ footer.page b{color:var(--ink); font-weight:600;}
         </div>
         <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 以個人時間與設備開發；歸屬依勞動契約之職務發明條款認定</p>
       </div>
-      <div class="metric"><b><!--m:window_computer_use.loc-->10,300<!--/m--></b>LOC · 14 tools</div>
+      <div class="metric"><b><!--m:window_computer_use.loc-->15,800<!--/m--></b>LOC · <!--m:window_computer_use.tools-->15<!--/m--> tools</div>
     </article>
 
     <article class="row">
@@ -511,7 +511,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 <section>
   <p class="eyebrow">不是 side project</p>
   <h2>這些系統每天在真實的工作流程裡跑</h2>
-  <p class="sub">主要是 AI Memory Vault（自 2026-04 起）跟任務執行平台。它們不是 demo，是我每天實際在用的工具。也因為使用場景會碰到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>。下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
+  <p class="sub">主要是 Espalio（原名 AI Memory Vault，自 2026-04 起）跟任務執行平台。它們不是 demo，是我每天實際在用的工具。也因為使用場景會碰到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>。下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
 
   <div class="skills" style="margin-bottom:26px;">
     <div class="skill lead">
@@ -534,8 +534,8 @@ footer.page b{color:var(--ink); font-weight:600;}
 </section>
 
 <section>
-  <p class="eyebrow">AI Memory Vault · 帶進團隊需要什麼</p>
-  <h2>把 AI Memory Vault 帶進團隊，缺的不是重寫，是三件事</h2>
+  <p class="eyebrow">Espalio · 帶進團隊需要什麼</p>
+  <h2>把 Espalio 帶進團隊，缺的不是重寫，是三件事</h2>
   <p class="sub">上面那個 RAG 知識庫目前是個人在用的，但它的形狀從第一天就是多方協作的：契約驅動、多消費端、依所有權分區。所以擴展成團隊共用不用重新設計，只要補上三個單人環境用不到的東西。<strong>這三件我都已經踩過相鄰的問題</strong>，不是紙上推演。</p>
 
   <div class="rows">
@@ -579,14 +579,14 @@ footer.page b{color:var(--ink); font-weight:600;}
     <li>
       <span class="idx">TEST</span>
       <div>
-        <b>我自己寫的守門測試，永遠不會紅</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">AI Memory Vault · 同儕審查抓到，不是測試抓到</span>
+        <b>我自己寫的守門測試，永遠不會紅</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">Espalio · 同儕審查抓到，不是測試抓到</span>
         <span>那個測試想守「每個排程任務都要有對應的處理函式」，作法是用正則抓原始碼裡字面的 <code>id="…"</code>。但實際的註冊寫法是變數，所以它回傳<b>空集合</b>。而<strong>空集合減任何集合還是空集合，差集永遠是空的</strong>。更刺的是同一個檔案裡有另一條自檢，卻只守了差集的右邊。改成讀真正的註冊表後，實測 16 對 16。</span>
       </div>
     </li>
     <li>
       <span class="idx">VERIFY</span>
       <div>
-        <b>修一個 bug，驗證階段連續犯三次同型錯誤</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">AI Memory Vault · 打包版才發作的缺陷</span>
+        <b>修一個 bug，驗證階段連續犯三次同型錯誤</b><span style="font-family:var(--mono); font-size:11px; color:var(--muted);">Espalio · 打包版才發作的缺陷</span>
         <span>修 bug 只花了一點時間，驗證卻連錯三次、每次都一度以為修正失敗：<b>①</b> 驗到的是舊版，新執行檔的呼叫被轉給還在跑的舊服務，入口是新的、幹活的是舊的；<b>②</b> 測試根本沒執行，而我把錯誤輸出丟進了 <code>/dev/null</code>；<b>③</b> 我自己寫的錯誤處理吞掉了例外，導致第二點那個路徑錯誤<b>連我自己都查不出來</b>。之後做了產物身分機制，讓「我驗到的是不是我剛建的那份」變成可斷言的事實，而不是靠記憶。<b>安裝後首次實戰就命中了。</b></span>
       </div>
     </li>

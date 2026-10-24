@@ -61,11 +61,11 @@ pip install -r requirements.txt && python scripts/eval.py
 
 | # | 專案 | 技術棧 | 一句話 |
 |---|---|---|---|
-| [01](projects/01-ai-memory-vault.md) | **AI Memory Vault** | Python · ChromaDB · MCP · PyInstaller | 個人知識庫的 RAG 後端，25 個 MCP 工具，四種部署形態 |
+| [01](projects/01-ai-memory-vault.md) | **Espalio**（原名 AI Memory Vault） | Python · ChromaDB · MCP · PyInstaller · Rust | 個人知識庫的 RAG 後端與記憶平台，記憶核心 <!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 支 MCP 工具，五種部署形態 |
 | [02](projects/02-remote-ai-task-platform.md) | **Remote AI Task Platform** | Python · SQLite · Discord | 讓 AI CLI 以低權限帳號在背景安全執行任務 |
 | [04](projects/04-jarvis-core-and-dashboard.md) | **Jarvis Core / Dashboard** | Python · TypeScript · JSON Schema | 契約驅動的薄核心 + 零建置觀測面板 |
 
-延伸：[07 · AI Memory Vault 從個人到團隊的落地路徑](projects/07-team-adoption-path.md)
+延伸：[07 · Espalio 從個人到團隊的落地路徑](projects/07-team-adoption-path.md)
 
 ### 需求來自職務現場
 

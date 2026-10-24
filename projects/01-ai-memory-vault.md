@@ -1,8 +1,8 @@
-# 01 · AI Memory Vault
+# 01 · Espalio（原名 AI Memory Vault）
 
 > **把個人知識庫變成 AI 的長期記憶。**
-> Python · ChromaDB · LangChain · FastMCP · PyInstaller · Inno Setup · Tauri
-> 2026-04 起，進行中｜<!--m:ai_memory_vault.tests_passed-->3,987<!--/m--> tests｜<!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--> 個 MCP 工具｜<!--m:ai_memory_vault.version-->v5.2.1<!--/m-->
+> Python · ChromaDB · LangChain · FastMCP · PyInstaller · Inno Setup · Rust · Tauri
+> 2026-04 起，進行中｜<!--m:ai_memory_vault.tests_passed-->3,999<!--/m--> tests｜<!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 個 MCP 工具｜<!--m:ai_memory_vault.version-->v5.2.1<!--/m-->
 
 ---
 
@@ -22,65 +22,92 @@
 
 ## 二、架構
 
-### 五層堆疊
+> 2026-04 到 09 月，這套系統是**單一 repo** 的 AI Memory Vault：記憶、收工、報告、排程、Agent 任務全部在同一個引擎裡。
+> 2026-09 起拆成三個產品，並改名 Espalio。下面描述的是拆分後的現況，拆分本身見〈減法計畫〉。
+
+### 三層，三個 repo
+
+| 層 | 產品 | 做什麼 |
+|---|---|---|
+| ① 記憶核心 | **Espalio Memory** | 記憶的寫入、存放、檢索、送到 AI 面前：<!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 支 MCP 工具、索引、內嵌維護定時器、自檢更新。只裝它也能完整使用記憶功能 |
+| ② 工作流插件 | **Espalio Workflow** | 我自己的工作流（收工、報告、排程、Agent 任務、多模型辯論）與編輯器轉接器。獨立行程，**只透過 MCP 存取核心** |
+| ③ 平台 | **Espalio**（Rust ＋ Tauri） | Windows 常駐主控台：看護各配件行程、執行它們在 manifest 宣告的排程，並把所有配件的 MCP 工具聚合成編輯器只需接一次的 `espalio` 入口；依風險等級放行、逐次確認或不暴露，每次呼叫寫稽核 |
+
+核心兩條硬約束：
+
+1. **核心不呼叫 LLM。** 嵌入它的 AI 就是大腦，由它判斷該記什麼；核心的「成長」全是機械式的（信心度事件、時間衰減、晉升標記、reindex）
+2. **每個工具輸出都有 token 預算**，超過就截斷並明說截了什麼
+
+依賴方向由測試以 AST 掃描守住：核心不得 import 插件，沒有例外。
+
+### 核心內部分層
 
 ```
-Transport   main.py 依 --mode 路由到 stdio / SSE / CLI
-MCP Tools   mcp_app/tools/ — 29 個工具實作，預設曝露 25 個，15 個模組
-            （運維／管理類 4 個預設關閉以降低 context 負擔，config.mcp.expose_admin_tools）
-Services    services/ — VaultService 門面、Scheduler、Instinct、Extractor
-Core        core/ — Indexer、Retriever、Embeddings、VectorStore、Migrations
-Config      config.py — AppConfig dataclass，從 DATA_DIR/config.json 載入
+Transport    main.py 依 --mode 路由到 stdio / SSE / CLI
+MCP Tools    mcp_app/tools/ — 21 支工具：8 支核心（recall/read/remember/update/forget/rename/context/sync）
+             ＋ 10 支舊名隱藏相容一個版本（呼叫會寫棄用紀錄）＋ 3 支運維類預設關閉
+Library API  vault_core/ — 對外的程式庫介面，8 支工具都是它的薄包裝
+Services     services/ — VaultService 門面、Instinct、PromotionScanner、Maintenance、Doctor、Updater
+Core         core/ — Indexer、Retriever、Embeddings、VectorStore、Migrations
 ```
 
-### 四種部署形態，同一份程式碼
+分層同樣由 import-linter 機器強制：`core` 不依賴上層，`services` 不依賴 `mcp_app`／`cli`。
+
+### 五種部署形態，同一份程式碼
 
 | 形態 | 傳輸 | 用途 |
 |---|---|---|
 | Python venv | stdio MCP | 開發 |
-| PyInstaller exe + Inno Setup 安裝檔 | stdio + SSE | 一般使用者（125.9 MB 安裝檔） |
+| PyInstaller exe + Inno Setup 安裝檔 | stdio + SSE | 一般使用者（124.4 MB 安裝檔） |
 | Docker | SSE (8765) | 遠端／跨機器 |
+| 常駐 SSE 服務 | SSE (8765) | 多個編輯器共用同一個核心 |
 | Tauri 桌面 UI | HTTP → SSE | 進行中 |
 
-這個「四形態」是後面一整節難題的來源。同一份程式碼在 frozen 模式下的行為跟從原始碼跑不一樣，而測試只跑後者。
+多形態是後面一整節難題的來源。同一份程式碼在 frozen 模式下的行為跟從原始碼跑不一樣，而測試只跑後者。
 
 ### 檢索管線
 
 ```
 query
-  ├─ BM25 稀疏檢索          權重 0.4
-  └─ ChromaDB 向量檢索       權重 0.6
-        ↓ 合併
-   時間衰減重排（指數，半衰期 90 天）
+  ├─ BM25 稀疏檢索 ─┐
+  └─ 向量檢索 ──────┴─ 加權 RRF 融合：score = w / (rank + c)，c = 5
+        ↓
+   composite scoring：relevance × recency × type × focus
+     · recency 是有界乘數 (1−w) + w × decay，w = 0.3、半衰期 90 天
+     · 規則與技能這類常青文件不受時間衰減
         ↓
    top_k 結果
 ```
 
-Embedding 模型 `paraphrase-multilingual-MiniLM-L12-v2`（多語、CPU 可跑）。
+兩側權重由設定決定（現行 BM25 0.5、向量 0.6）。Embedding 模型 `paraphrase-multilingual-MiniLM-L12-v2`（多語、CPU 可跑）。
+RRF 的 `c` 原本沿用函式庫預設 60，2026-09 拆出不用於守門的調參集之後才改成 5，見難題 1 之後的〈一個刻意延後的參數〉。
 → 知識點：混合檢索
 
-### 一次往返拿完脈絡：`session_bootstrap`
+### 一次往返拿完脈絡：`context`
 
-冷啟動的 AI（SubAgent、外部工具）繼承不到主對話的記憶注入。原本要三次呼叫（派 agent → 查直覺 → 載 skill），改成單一工具回傳六個區塊：
+冷啟動的 AI（SubAgent、外部工具）繼承不到主對話的記憶注入。核心的 `context` 工具在 token 預算內一次回傳：使用者指定釘選的筆記，加上與當前任務相關的高信心經驗卡片。
 
-導航與身分 / Agent 行為定義 / 經 scope 過濾的規則 / 高信心直覺 / 可用 Skill 清單 / 守門啟用狀態
-
-每個區塊獨立容錯。單一來源失敗（例如向量索引壞掉）不影響其他區塊。
+Agent 定義、規則全文、Skill 清單這類**工作流的東西不在這裡**，由插件組裝。這條界線就是減法計畫畫出來的。
 → 知識點：MCP 工具面設計
 
-### 控制平面 / 使用者資料分離（v3.26.0）
+### 減法計畫：把「我的工作流」從記憶核心拆出去（2026-09）
 
-系統本身要出貨給人用，但出貨的內容（規則、目錄契約、hook 資產）會落地在使用者的知識庫裡，因為 Claude Code、Obsidian、grep 都得讀得到它。
+到 9 月，引擎裡已經長出收工、日週月報、排程器、Agent 任務、多模型辯論、編輯器設定投影……全部和記憶共用同一個行程、同一份設定。結果是任何人想用「記憶」，都得連我的個人工作流一起裝。
 
-問題是：使用者也可以編輯它。
+拆分的判準只有一條：
 
-解法是**切所有權，不切可見性**：
+> 少了它，記憶還能被**寫進去、存好、找得到、送到 AI 面前**嗎？
+> 是這四個動作之一 → 留在核心；其餘 → 工作流插件。
 
-- 落地的檔案照樣是可讀的 `.md`
-- 但權威在 `AI_Engine/control_plane/`，落地那份是可再生的投影
-- 啟動時 reconciler 比對投影與權威，偵測漂移並重生
+照這條切下去，核心的工具從 29 支收斂到 8 支常用動詞，排程器、收工流程和編輯器轉接器都搬到插件 repo。插件不能直接打開向量庫，要寫檔案就先取核心的檔案鎖，寫完再呼叫核心的 `sync` 收尾。
 
-主防線刻意不是攔截式閘門。Claude Code 的 Edit/Write、Obsidian 都是直接寫檔案系統、不經過服務層，攔截在架構上就有洞。所以改成偵測加自我修復。
+拆的過程刻意不一次切斷，**每一步都留得住回頭路**：
+
+- 舊工具名保留一個版本，在 `tools/list` 隱藏，但每次呼叫都會寫棄用紀錄，看得到還有誰在用
+- 插件指令在過渡期仍可經由核心轉發；等排程、腳本和 hook 範本都確認不再走核心（有測試掃三個 repo）才拆掉轉發，之後誤用只會印出該改用的插件指令並以非零碼結束
+- 核心原本會把規則與 hook 資產「落地」到使用者知識庫，並用 reconciler 偵測漂移、自我修復（v3.26.0 的控制平面設計）。這整套連同它的 manifest 一起移給插件，現在**核心不往知識庫寫任何內容**
+
+拆完之後，「核心不得依賴插件」從一條文件裡的約定，變成 AST 掃描的測試，而且沒有例外。
 → 知識點：契約驅動解耦
 
 ---
@@ -119,6 +146,18 @@ Embedding 模型 `paraphrase-multilingual-MiniLM-L12-v2`（多語、CPU 可跑�
 這條後來寫成專案的常駐規則，並且反過來查出更多同型缺陷。
 
 這裡有個更微妙的教訓：新加的守門，第一次跑就接上告警出口是錯的。一個沒事也亮紅燈的檢查，下一個人最合理的反應就是把它關掉，然後它連真的壞掉時也不會有人看。**守門要先證明自己不亂叫，才有資格叫。**
+
+### 一個刻意延後的參數
+
+閘門接上之後，它量出的第一件有意思的事跟它自己有關。
+
+RRF 融合 `score = w / (rank + c)` 的 `c` 從來沒有被指定，默默沿用函式庫預設 60。60 是為「數百筆的排序清單」設計的，而這裡每一側只取 5～20 筆：rank 1 與 rank 10 的分母只差 61 對 70，權重比 1.5 直接輾過名次。融合退化成「權重大的那一側說了算」。實測有一題 BM25 把正確答案排第 1、向量側排第 13，而混合檢索的輸出**與純向量逐位相同**。
+
+把 `c` 改成 5，同一組題目的 recall@5 從 0.690 升到 0.786。但我**當下沒有改**：那組題目同時是回歸閘門的量尺，拿它調參，等於把參數調到讓閘門好看，之後那道閘門就再也證明不了「沒有退化」。所以那次只做一件事：把 60 從隱含預設變成程式碼裡明寫的常數，寫清楚它為什麼是 60、改它的代價是什麼。
+
+2026-09-03，我決定接受代價：改成 `c = 5`，並重新校準閘門下限。隔天把題庫從 42 題擴充到 84 題，拆成 train 與 test 兩半：**調參只看 train，閘門只守 test**。改參數本身可以接受，要補上的是讓下一次調參不再污染量尺的機制。
+
+但這個機制是**事後**才補上的：`c = 5` 是在拆分之前的 42 題上選的，其中 20 題落在現在的 test split（共 40 題）。所以 test 對這個值並不是完全沒見過，引用 test 的數字時這句要一起講。之後再動它，只准看 train。
 
 ---
 
@@ -253,15 +292,15 @@ assert _registered_ids() - handler_ids == set()
 
 | 指標 | 數值 | 量測日 |
 |---|---|---|
-| 測試 | <!--m:ai_memory_vault.tests_passed-->3,987<!--/m--> passed（<!--m:ai_memory_vault.tests_skipped-->73<!--/m--> skipped，<!--m:ai_memory_vault.tests_collected-->4,067<!--/m--> collected） | 2026-10-22 |
-| MCP 工具 | 25（+4 個管理工具，預設關閉） | 2026-08-08 |
-| 檢索品質（現行 baseline） | recall@5 = 0.690（回歸閘門下限 0.60） | 2026-08-08 |
+| 測試 | <!--m:ai_memory_vault.tests_passed-->3,999<!--/m--> passed（<!--m:ai_memory_vault.tests_skipped-->32<!--/m--> skipped，<!--m:ai_memory_vault.tests_collected-->4,032<!--/m--> collected） | 2026-10-22 |
+| MCP 工具 | <!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> 支核心工具（實作共 <!--m:ai_memory_vault.mcp_tools_implemented-->21<!--/m--> 支，含舊名相容與預設關閉的運維類） | 2026-10-23 |
+| 檢索品質（現行 baseline） | recall@5 = <!--m:ai_memory_vault.recall_at_5_current-->0.750<!--/m-->（82 題題庫的 test split，40 題；回歸閘門下限 0.65） | 2026-10-24 |
 | 脈絡化前綴的 A/B 改進 | recall@5 0.643 → 0.810（+26%），同語料同題庫 | 2026-07-05 |
 | 健康檢查紅燈 | 0 | 2026-08-08 |
-| 安裝檔 | 125.9 MB，全新安裝 16 項驗收、真實 exe 端對端 11 項 | 2026-08-09（v4.2.4） |
-| 版本 | v4.2.x（自 v3.26.0 起導入控制平面分離） | — |
+| 安裝檔 | 124.4 MB | 2026-10-18（<!--m:ai_memory_vault.version-->v5.2.1<!--/m-->） |
+| 版本 | <!--m:ai_memory_vault.version-->v5.2.1<!--/m-->（v5.0 起核心與工作流插件分離，v5.1 起改名 Espalio Memory） | 2026-10-18 |
 
-工具面設計上的一個決定：低頻操作合併成 `action` 參數化工具（`instinct`、`task`、`todo`…），高頻入口保留獨立名稱（`search_vault`、`read_note`、`session_bootstrap`…）。未知的 `action` 回傳具名錯誤並列出有效值，絕不靜默失敗。
+工具面設計上的一個決定：核心只留 8 個動詞（找、讀、記、改、忘、改名、取脈絡、同步），每一支都有 token 預算。原本 10 個記憶類舊名字沒有直接刪掉，在 `tools/list` 隱藏一個版本，呼叫照樣能用但會寫棄用紀錄，看得到還有誰在依賴它們。帶 `action` 參數的工具遇到未知的 `action`，回傳具名錯誤並列出有效值，絕不靜默失敗。
 
 ---
 

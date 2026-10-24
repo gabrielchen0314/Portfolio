@@ -1,6 +1,6 @@
-# 07 · AI Memory Vault 從個人到團隊的落地路徑
+# 07 · Espalio 從個人到團隊的落地路徑
 
-> 主體是 [01 AI Memory Vault](01-ai-memory-vault.md) 這個 RAG 知識庫。
+> 主體是 [01 Espalio](01-ai-memory-vault.md) 這個 RAG 知識庫。
 >
 > **它的形狀從第一天就是多方協作的。「擴展成團隊共用」不是重新設計，是補上三個單人環境用不到的東西。**
 > 本文是設計推導，不是承諾的 roadmap。每一項都標明「已驗證什麼」與「還缺什麼」。
@@ -87,5 +87,5 @@
 
 ## 相關
 
-- [01 AI Memory Vault](01-ai-memory-vault.md)：知識層與分區設計
+- [01 Espalio](01-ai-memory-vault.md)：知識層與分區設計
 - [04 Jarvis Core / Dashboard](04-jarvis-core-and-dashboard.md)：契約驅動與多消費端的實證

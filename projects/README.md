@@ -11,10 +11,10 @@
 
 | # | 專案 | 期間 | 技術棧 | 規模 |
 |---|---|---|---|---|
-| [01](01-ai-memory-vault.md) | AI Memory Vault | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | <!--m:ai_memory_vault.tests_passed-->3,987<!--/m--> tests · <!--m:ai_memory_vault.mcp_tools_exposed-->25<!--/m--> MCP tools · <!--m:ai_memory_vault.version-->v5.2.1<!--/m--> |
-| [02](02-remote-ai-task-platform.md) | Remote AI Task Platform | 2026-07 ~ 進行中 | Python · SQLite(WAL) · Discord.py · Windows API | <!--m:remote_ai_task_platform.tests_passed-->528<!--/m--> tests · Phase 1B 完成 |
+| [01](01-ai-memory-vault.md) | Espalio（原名 AI Memory Vault） | 2026-04 ~ 進行中 | Python 3.12 · ChromaDB · LangChain · FastMCP · PyInstaller · Tauri | <!--m:ai_memory_vault.tests_passed-->3,999<!--/m--> tests · <!--m:ai_memory_vault.mcp_tools_exposed-->8<!--/m--> MCP tools · <!--m:ai_memory_vault.version-->v5.2.1<!--/m--> |
+| [02](02-remote-ai-task-platform.md) | Remote AI Task Platform | 2026-07 ~ 進行中 | Python · SQLite(WAL) · Discord.py · Windows API | <!--m:remote_ai_task_platform.tests_passed-->721<!--/m--> tests · Phase 1B 完成 |
 | [04](04-jarvis-core-and-dashboard.md) | Jarvis Core / Dashboard | 2026-07 ~ 維持 | Python · TypeScript(Node 原生) · JSON Schema | 142 + 87 tests · kernel ≤1500 LOC |
-| [07](07-team-adoption-path.md) | AI Memory Vault 帶進團隊的落地路徑 | — | 設計推導 | 三個缺口 · 三個風險 |
+| [07](07-team-adoption-path.md) | Espalio 帶進團隊的落地路徑 | — | 設計推導 | 三個缺口 · 三個風險 |
 
 ### 需求來自職務現場
 
@@ -23,7 +23,7 @@
 
 | # | 專案 | 期間 | 技術棧 | 規模 | 歸屬 |
 |---|---|---|---|---|---|
-| [03](03-window-computer-use.md) | Window Computer Use | 2026-07 ~ 凍結 | C# · .NET 8 · UI Automation · Windows Graphics Capture | <!--m:window_computer_use.loc-->10,300<!--/m--> LOC · <!--m:window_computer_use.tools-->14<!--/m--> MCP tools | 個人時間與設備；依職務發明條款認定 |
+| [03](03-window-computer-use.md) | Window Computer Use | 2026-07 ~ 凍結 | C# · .NET 8 · UI Automation · Windows Graphics Capture | <!--m:window_computer_use.loc-->15,800<!--/m--> LOC · <!--m:window_computer_use.tools-->15<!--/m--> MCP tools | 個人時間與設備；依職務發明條款認定 |
 | [05](05-legacy-toolchain-modernization.md) | Legacy 工具鏈現代化 | 2026-05 ~ | TypeScript · C++ · DAP · VS Code Extension API | VS2003 + UE2 全鏈打通 | 職務中開發，屬雇主 |
 | [06](06-ai-enablement.md) | 團隊 AI 導入 | 2026-07 ~ | — | 六階段通關制 | 職務中開發，教材屬雇主 |
 
