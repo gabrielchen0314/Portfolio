@@ -2,7 +2,7 @@
 
 > **一個刻意寫得很薄的核心，加上三個用 JSON Schema 契約掛進來的消費端。**
 > Python（kernel）· TypeScript / Node 原生（dashboard）· JSON Schema
-> 2026-07 起｜kernel 142 tests、dashboard 87 tests｜kernel ≤1500 LOC（**機器強制**）
+> 2026-07 起｜kernel <!--m:jarvis.core_tests-->157<!--/m--> tests、dashboard <!--m:jarvis.dashboard_tests-->162<!--/m--> tests｜kernel ≤1500 LOC（**機器強制**）
 
 ---
 
@@ -179,8 +179,8 @@
 
 | 指標 | 數值 |
 |---|---|
-| kernel 測試 / LOC | 142 passed / 1002 行（上限 1500，機器強制） |
-| dashboard 測試 | 87 passed / 24 suites / 0 fail |
+| kernel 測試 / LOC | <!--m:jarvis.core_tests-->157<!--/m--> passed / <!--m:jarvis.kernel_loc-->1,109<!--/m--> 行（上限 1500，機器強制） |
+| dashboard 測試 | <!--m:jarvis.dashboard_tests-->162<!--/m--> passed / 0 fail |
 | 契約凍結實證 | 963 則真實 payload，0 則不合 |
 | 登記消費端 | 3 個（其中 1 個為異語言，證明契約語言中立） |
 | 同儕審查 | 計畫 3 輪 + 規格 3 輪 + 實作 4 輪，皆 APPROVED |
