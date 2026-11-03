@@ -281,16 +281,16 @@ footer.page b{color:var(--ink); font-weight:600;}
     <h1>陳鼎翰</h1>
     <span class="en">Ding-Han Chen</span>
   </div>
-  <p class="role">AI 系統工程師 · 遊戲後端 / Legacy 系統現代化</p>
+  <p class="role">AI 系統工程師 · 遊戲全端（Unity / 伺服器）· 技術組長</p>
   <div class="contactbar fade">
     <a href="mailto:gabrielchen0314@gmail.com">gabrielchen0314@gmail.com</a>
     <span>台北市</span>
-    <span>軟體工程 6 年 6 個月（含遊戲業 6 年）</span>
+    <span>軟體工程 <!--m:career.total_experience-->6 年 6 個月<!--/m-->（含遊戲業 <!--m:career.game_industry-->6 年<!--/m-->）</span>
     <span>在職中</span>
   </div>
 
   <p class="thesis fade">在 <em>legacy 環境</em>裡做 <em>AI 系統工程</em>。</p>
-  <p class="intro fade">白天維護二十年歷史的 MMORPG 端遊。伺服器是 Delphi，客戶端是 C++ 跟 UE2，原始碼還是 BIG5 編碼，建置鏈停在 VS2003。另外還有一條 Unity 加 Lua 的手遊。晚上用自己的時間交付了一組 AI 系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，還有一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少。</strong>而多數企業真正需要導入 AI 的地方，剛好就是那些不能重寫的舊系統。</p>
+  <p class="intro fade">白天維護二十年歷史的 MMORPG 端遊。伺服器是 Delphi，客戶端是 C++ 跟 UE2，原始碼還是 BIG5 編碼，建置鏈停在 VS2003。另外還有一條 Unity 加 Lua 的手遊，UI 框架的地基是我打的；也從零做過一個手機 App 加中繼伺服器的產品，兩端都自己寫，做到雙平台上架。晚上用自己的時間交付了一組 AI 系統：RAG 知識庫、MCP 工具面、低權限任務執行平台，還有一個不碰實體鍵鼠的 Computer Use 工具。<strong>這兩件事單獨都有人做，交集的人很少。</strong>而多數企業真正需要導入 AI 的地方，剛好就是那些不能重寫的舊系統。</p>
 
   <div class="readout fade">
     <div class="cell"><span class="k">最大專案的測試數</span><span class="v"><!--m:ai_memory_vault.tests_passed-->3,999<!--/m--><small>／<!--m:ai_memory_vault.version-->v5.2.1<!--/m--></small></span></div>
@@ -316,7 +316,7 @@ footer.page b{color:var(--ink); font-weight:600;}
     </div>
     <div class="skill">
       <h4>語言與平台</h4>
-      <p>Python · C# / .NET 8 · TypeScript · C++ · Delphi / Pascal · Lua · PowerShell<br>ChromaDB · SQLite (WAL) · Docker · Windows API · Unity3D</p>
+      <p>Python · C# / .NET 8 · TypeScript · C++ · Delphi / Pascal · Lua · PowerShell<br>ChromaDB · SQLite (WAL) · Docker · Windows API · Unity3D（toLua · Addressables）· TCP 中繼伺服器</p>
     </div>
     <div class="skill">
       <h4>交付與工具鏈</h4>
@@ -330,7 +330,7 @@ footer.page b{color:var(--ink); font-weight:600;}
   <h2>經歷</h2>
   <div class="exp">
     <article class="job">
-      <div class="when"><b>2020.11 – 現職</b>6 年</div>
+      <div class="when"><b>2020.11 – 現職</b><!--m:career.game_industry-->6 年<!--/m--></div>
       <div>
         <h3>中華網龍股份有限公司</h3>
         <p class="title">遊戲工程師 · 組長</p>
@@ -339,6 +339,10 @@ footer.page b{color:var(--ink); font-weight:600;}
           <li>建置鏈現代化：自行開發 VS Code Extension，把 <b>VS.NET 2003 + UE2</b> 的專案接上現代 IDE，並<b>自行實作 UnrealScript 的 Debug Adapter</b>（往引擎 C++ 注入 DAP server）</li>
           <li>導入 AI 輔助開發流程：解決 legacy 專案（BIG5 編碼）被 AI 工具寫壞的根本問題，並建立自動化的守門機制</li>
           <li>帶領<b>零基礎、不寫程式的 QA 團隊導入 AI</b>：設計六階段通關制路線圖與可直接開課的教學講義</li>
+          <li><b>技術組長</b>：起初帶 10 人，後為 4 人</li>
+          <li>手遊 UI 框架與資料層（Unity + C# + toLua，2022–2026）：<b>UI 管理器初版作者</b>，2,383 筆提交、專案第 3；部分元件被抽進公司 Unity 專案範本</li>
+          <li>從零開發手機伴隨 App 與中繼伺服器（2023）：<b>App 與中繼兩端主寫</b>，處理斷線語意、重複登入、BIG5 解碼與儲值轉送，雙平台上架</li>
+          <li>Delphi 遊戲伺服器穩定性分析（2026）：42 個資料主題、8 個高風險狀態機、10 張驗證卡</li>
         </ul>
       </div>
     </article>
@@ -509,6 +513,56 @@ footer.page b{color:var(--ink); font-weight:600;}
 </section>
 
 <section>
+  <p class="eyebrow">加分項 · AI 之前的本業</p>
+  <h2>遊戲全端：從手機到伺服器都自己寫過</h2>
+  <p class="sub">上面的 AI 系統之所以能落地在舊系統上，是因為這些系統我本來就在寫。<strong>手機客戶端、中繼伺服器、遊戲伺服器三層都親手做過，也做到上架。</strong>歸屬：職務中開發，著作權屬雇主；內容已去識別化。</p>
+
+  <div class="rows">
+    <article class="row">
+      <div>
+        <h3 class="name">手機伴隨 App ＋ 中繼伺服器 <span class="tag">Unity · Lua · C# · TCP</span></h3>
+        <p>讓玩家用手機登入營運多年的 PC 端遊帳號，查看角色並儲值。遊戲伺服器只認 PC 客戶端，所以中間寫了一台中繼：連線對照、斷線自動重連、重複登入檢查、儲值轉送。<b>一個 App 殼承載兩款遊戲</b>，切換時動態載入與卸載各自的 Lua 模組。</p>
+        <div class="story">
+          <span class="lbl">踩過的坑 · 手機被滑掉之後，伺服器以為人還在線上</span>
+          <dl>
+            <dt>現象</dt><dd>玩家把 App 滑掉再打開，登不進去，提示帳號重複登入。</dd>
+            <dt>根因</dt><dd>伺服器看的是它和中繼之間的連線，而那條連線好好的。<b>中間多一層轉送，「人走了」這個訊號就被吃掉了</b>，每一層都正確執行了自己的邏輯。</dd>
+            <dt>解法</dt><dd>中繼是唯一同時看得到兩邊的位置，所以由它翻譯斷線語意：偵測到手機異常斷線時，<b>代替手機向遊戲伺服器補送登出</b>；App 端連上就自動送心跳，讓死掉的連線更早被發現。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">登入失敗時先斷線再轉送 → 手機永遠收不到原因</span>
+          <span class="chip">一個沒包例外的 HTTP 呼叫可以拖垮整台中繼</span>
+        </div>
+        <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 職務中開發，著作權屬雇主</p>
+      </div>
+      <div class="metric"><b>2 端</b>主寫 · 雙平台上架</div>
+    </article>
+
+    <article class="row">
+      <div>
+        <h3 class="name">手遊 MMO 的 UI 框架與資料層 <span class="tag">Unity · C# · toLua</span></h3>
+        <p>150 個以上的介面控制器，全版、半版、子介面、常駐列各有不同的疊放規則。我寫了 UI 管理器的初版，之後長期重構（537 次修改中 222 次）；無限捲軸、安全區與多螢幕比例、按鈕狀態機、串檔非同步讀取也是我打的地基。<b>部分元件後來被抽進公司的 Unity 專案範本</b>。</p>
+        <div class="story">
+          <span class="lbl">踩過的坑 · 開啟改成非同步，關閉卻不知道</span>
+          <dl>
+            <dt>現象</dt><dd>介面開啟改成協程之後，開到一半被關掉的介面會自己再跑出來，全版介面疊在一起、上一頁回錯地方。</dd>
+            <dt>根因</dt><dd>同步時「開」是瞬間完成的，不需要能被取消。<b>改成一段時間之後，關閉流程不知道有一個正在跑的開啟</b>：沒停協程、沒移出堆疊、排隊佇列沒去重。</dd>
+            <dt>解法</dt><dd>關閉時停止開啟協程並移出全版堆疊，排隊時去重。規則可以帶走：<b>每一個變成「一段時間」的動作，都要有對應的取消</b>。</dd>
+          </dl>
+        </div>
+        <div class="chips">
+          <span class="chip">同一個 Order 有兩條算法 → 介面多時就算錯</span>
+          <span class="chip">只在執行檔重現的誤關 → 讓呼叫點自己報出來源</span>
+        </div>
+        <p style="font-family:var(--mono); font-size:11.5px; color:var(--muted); margin:10px 0 0;">⚖️ 職務中開發，著作權屬雇主</p>
+      </div>
+      <div class="metric"><b>2,383</b>提交 · 專案第 3</div>
+    </article>
+  </div>
+</section>
+
+<section>
   <p class="eyebrow">不是 side project</p>
   <h2>這些系統每天在真實的工作流程裡跑</h2>
   <p class="sub">主要是 Espalio（原名 AI Memory Vault，自 2026-04 起）跟任務執行平台。它們不是 demo，是我每天實際在用的工具。也因為使用場景會碰到專有資料，<strong>資料邊界是先設計的，不是事後補的</strong>。下面三道邊界本身，就是我對 AI 系統安全設計的實作。</p>
@@ -632,7 +686,7 @@ footer.page b{color:var(--ink); font-weight:600;}
 
 <footer class="page">
   <b>關於數據</b>　頁面上的測試數、版本、位元組數都是當時實際跑出來的值，不是估計。會過時，但不會是編的。<br>
-  <b>完整技術文件</b>　<!--m:career.public_scrolls-->7<!--/m--> 篇專案卷各有一份完整的「難題 → 根因 → 解法」，見 <a href="https://github.com/gabrielchen0314/Portfolio">GitHub</a>。<br>
+  <b>完整技術文件</b>　<!--m:career.public_scrolls-->9<!--/m--> 篇專案卷各有一份完整的「難題 → 根因 → 解法」，見 <a href="https://github.com/gabrielchen0314/Portfolio">GitHub</a>。<br>
   <b>聯絡</b>　<a href="mailto:gabrielchen0314@gmail.com">gabrielchen0314@gmail.com</a>
 </footer>
 

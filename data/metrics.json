@@ -143,19 +143,19 @@
   },
   "career": {
     "total_experience": {
-      "value": "6 年 5 個月",
-      "measured_on": "2026-10-23",
+      "value": "6 年 6 個月",
+      "measured_on": "2026-11-04",
       "how": "2019-12 起，扣除中間 5 個月空窗"
     },
     "game_industry": {
-      "value": "5 年 11 個月",
-      "measured_on": "2026-10-23",
+      "value": "6 年",
+      "measured_on": "2026-11-04",
       "how": "2020-11 起"
     },
     "public_scrolls": {
-      "value": 7,
-      "measured_on": "2026-08-15",
-      "how": "公開的專案卷數（01~07 全數）。03/05/06 於 08-15 複核後移回公開側"
+      "value": 9,
+      "measured_on": "2026-11-03",
+      "how": "公開的專案卷數（01~09 全數）。03/05/06 於 08-15 複核後移回公開側；08/09 於 11-03 新增，去識別化版本"
     },
     "private_scrolls": {
       "value": 0,

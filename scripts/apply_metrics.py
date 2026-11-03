@@ -41,7 +41,9 @@ DISPLAY_FILES: tuple = ( "index.html", "README.md", "projects/README.md",
                          "projects/04-jarvis-core-and-dashboard.md",
                          "projects/05-legacy-toolchain-modernization.md",
                          "projects/06-ai-enablement.md",
-                         "projects/07-team-adoption-path.md" )
+                         "projects/07-team-adoption-path.md",
+                         "projects/08-mobile-companion-relay.md",
+                         "projects/09-unity-ui-framework.md" )
 
 MARK_PATTERN: re.Pattern = re.compile( r"<!--m:([a-z0-9_.]+)-->(.*?)<!--/m-->", re.S )
 
